@@ -209,7 +209,7 @@ export const History = () => {
           //           </tbody>
           //         </table>
           //       </div>
-          <div className="max-w-4xl mx-auto flex-1 flex flex-col gap-4 p-4 lg:p-8 rounded-[32px] bg-neutral-0 dark:bg-neutral-800">
+          <div className="max-w-4xl w-full mx-auto flex-1 flex flex-col gap-4 p-4 lg:p-8 rounded-[32px] bg-neutral-0 dark:bg-neutral-800">
             <div className="flex justify-end">
               <Button
                 label="Delete All"
