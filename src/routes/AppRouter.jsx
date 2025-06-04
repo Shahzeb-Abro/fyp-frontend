@@ -11,12 +11,18 @@ import { Dashboard, Detection, Doctors, History } from "../modules/private";
 import { Settings } from "../modules/private/settings";
 import {
   AccountSettings,
+  ProfileSettings,
   ThemeSettings,
 } from "../modules/private/settings/components";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ProtectedRoute } from "./ProtectedRoute";
+import { LanguageSettings } from "../modules/private/settings/components/language";
 
 export const AppRouter = () => {
+  const [currentLanguage, setCurrentLanguage] = useState(
+    localStorage.getItem("language") || "en"
+  );
+
   useEffect(() => {
     const theme = localStorage.getItem("theme") || "light";
     // Set the initial theme based on localStorage value
@@ -26,6 +32,21 @@ export const AppRouter = () => {
       document.body.classList.remove("dark");
     }
   }, []);
+
+  useEffect(() => {
+    const handleLanguageChange = (event) => {
+      const newLanguage = event.detail.language;
+      setCurrentLanguage(newLanguage);
+      // You can add any additional language change logic here
+      // For example, updating document.documentElement.lang
+      document.documentElement.lang = newLanguage;
+    };
+
+    window.addEventListener("languageChanged", handleLanguageChange);
+    return () =>
+      window.removeEventListener("languageChanged", handleLanguageChange);
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -50,7 +71,9 @@ export const AppRouter = () => {
           <Route path={ROUTES.HISTORY} element={<History />} />
           <Route path={"settings"} element={<Settings />} />
           <Route path={"settings/theme"} element={<ThemeSettings />} />
-          <Route path={"settings/account"} element={<AccountSettings />} />
+          <Route path={"settings/password"} element={<AccountSettings />} />
+          <Route path={"settings/profile"} element={<ProfileSettings />} />
+          <Route path={"settings/language"} element={<LanguageSettings />} />
         </Route>
       </Routes>
     </BrowserRouter>

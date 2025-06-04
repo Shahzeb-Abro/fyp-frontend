@@ -8,35 +8,37 @@ import {
   SearchIcon,
 } from "../../../../../../assets/svgAssets";
 import { motion, AnimatePresence } from "framer-motion";
+import { FormattedMessage } from "react-intl";
 
 const LINKS = [
   {
     id: 0,
-    name: "Dashbaord",
+    name: <FormattedMessage id="DASHBOARD.HOME" />,
     icon: <HomeIcon />,
     route: ROUTES.HOME,
   },
   {
     id: 1,
-    name: "Detect",
+    name: <FormattedMessage id="DASHBOARD.DETECT" />,
     icon: <SearchIcon />,
     route: ROUTES.DETECT,
   },
   {
     id: 2,
-    name: "History",
+    name: <FormattedMessage id="DASHBOARD.HISTORY" />,
     icon: <ClockIcon />,
     route: ROUTES.HISTORY,
   },
   {
     id: 3,
-    name: "Doctors",
+    name: <FormattedMessage id="DASHBOARD.DOCTORS" />,
     icon: <PersonsIcon />,
     route: ROUTES.DOCTORS,
   },
 ];
 
 export const Links = ({ isExpanded = true }) => {
+  const selectedLanguage = localStorage.getItem("language");
   return (
     <div className="flex flex-col pb-2 gap-2">
       {LINKS.map((link) => (
@@ -79,7 +81,9 @@ export const Links = ({ isExpanded = true }) => {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.15 }}
-                    className="text-primary-text"
+                    className={`text-primary-text ${
+                      selectedLanguage === "ur" ? "rotate-180" : ""
+                    }`}
                   >
                     <ChevronRight />
                   </motion.span>

@@ -16,7 +16,7 @@ export const Sidebar = () => {
       initial={false}
       animate={{ width: isExpanded ? 272 : 82 }}
       transition={{ duration: 0.2, ease: "easeInOut" }}
-      className="h-dvh py-3 px-4 bg-surface-2 flex flex-col gap-4"
+      className=" py-3 px-4 bg-surface-2 flex flex-col gap-4 "
     >
       <div
         className="cursor-pointer text-primary-text flex items-center justify-center"

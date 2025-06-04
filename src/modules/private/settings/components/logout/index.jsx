@@ -7,6 +7,7 @@ import {
 } from "../../../../../lib/toastUtils";
 import ROUTES from "../../../../../constants/routes";
 import { useNavigate } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 
 export const Logout = () => {
   const navigate = useNavigate();
@@ -36,12 +37,18 @@ export const Logout = () => {
       type="button"
       onClick={logoutMutate}
       disabled={isPending}
-      className="flex items-center gap-2 py-2.5 text-preset-4 text-secondary-text px-4 hover:bg-blue-50 dark:hover:bg-neutral-800 rounded-lg "
+      className="flex items-center gap-2 py-2.5 text-sm text-secondary-text px-4 hover:bg-blue-50 dark:hover:bg-neutral-800 rounded-lg "
     >
       <span>
         <LogoutIcon />
       </span>
-      <span>{isPending ? "Logging out..." : "Logout"}</span>
+      <span>
+        {isPending ? (
+          <FormattedMessage id="SETTINGS.LOGGING_OUT" />
+        ) : (
+          <FormattedMessage id="SETTINGS.LOGOUT" />
+        )}
+      </span>
     </button>
   );
 };

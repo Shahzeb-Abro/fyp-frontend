@@ -1,48 +1,44 @@
 import { useEffect, useState } from "react";
-import { LogoutIcon, MoonIcon, SunIcon } from "../../../../../assets/svgAssets";
 import { PageHeader } from "../../../../../layout/dashboardLayout/components";
 import { Links } from "../links";
-import { Link } from "react-router-dom";
-import ROUTES from "../../../../../constants/routes";
 import { Button, Option } from "../../../../../generalComponents";
 import { Logout } from "../logout";
 import { FormattedMessage } from "react-intl";
 
-const themeOptions = [
+const LanguageOptions = [
   {
     id: 0,
-    title: <FormattedMessage id="SETTINGS.COLOR_THEME_LIGHT" />,
-    subtitle: <FormattedMessage id="SETTINGS.COLOR_THEME_LIGHT_DESCRIPTION" />,
-    icon: <SunIcon />,
-    value: "light",
+    title: <FormattedMessage id="SETTINGS.ENGLISH" />,
+    subtitle: <FormattedMessage id="SETTINGS.ENGLISH_DESCRIPTION" />,
+    icon: <span className="text-xs text-primary-text font-bold">EN</span>,
+    value: "en",
   },
   {
     id: 1,
-    title: <FormattedMessage id="SETTINGS.COLOR_THEME_DARK" />,
-    subtitle: <FormattedMessage id="SETTINGS.COLOR_THEME_DARK_DESCRIPTION" />,
-    icon: <MoonIcon />,
-    value: "dark",
+    title: <FormattedMessage id="SETTINGS.URDU" />,
+    subtitle: <FormattedMessage id="SETTINGS.URDU_DESCRIPTION" />,
+    icon: <span className="text-xs text-primary-text font-bold">ار</span>,
+    value: "ur",
   },
 ];
 
-export const ThemeSettings = () => {
+export const LanguageSettings = () => {
   const [selectedOption, setSelectedOption] = useState(
-    localStorage.getItem("theme") || "light"
+    localStorage.getItem("language") || "en"
   );
 
   useEffect(() => {
-    document.title = "Theme Settings | Radyab-e-Zakhm";
+    document.title = "Language Settings | Radyab-e-Zakhm";
   }, []);
 
-  const handleThemeChange = () => {
-    localStorage.setItem("theme", selectedOption);
-
-    // Add or remove the 'dark' class from the body element
-    if (selectedOption === "dark") {
-      document.body.classList.add("dark");
-    } else {
-      document.body.classList.remove("dark");
-    }
+  const handleLanguageChange = () => {
+    localStorage.setItem("language", selectedOption);
+    // Dispatch a custom event that can be listened to by the main app
+    window.dispatchEvent(
+      new CustomEvent("languageChanged", {
+        detail: { language: selectedOption },
+      })
+    );
   };
 
   const selectedLanguage = localStorage.getItem("language");
@@ -69,15 +65,15 @@ export const ThemeSettings = () => {
           <div className="p-4 md:p-8 max-w-[528px] flex flex-col gap-6">
             <div className="flex flex-col gap-1">
               <h2 className="text-xl text-primary-text font-semibold">
-                <FormattedMessage id="SETTINGS.COLOR_THEME" />
+                <FormattedMessage id="SETTINGS.LANGUAGE" />
               </h2>
               <p className="text-sm text-secondary-text">
-                <FormattedMessage id="SETTINGS.COLOR_THEME_DESCRIPTION" />
+                <FormattedMessage id="SETTINGS.LANGUAGE_DESCRIPTION" />
               </p>
             </div>
 
             <div className="flex flex-col gap-4">
-              {themeOptions.map((option) => (
+              {LanguageOptions.map((option) => (
                 <Option
                   key={option.id}
                   title={option.title}
@@ -93,7 +89,7 @@ export const ThemeSettings = () => {
             <div className="flex justify-end w-full">
               <Button
                 label={<FormattedMessage id="SETTINGS.APPLY_CHANGES" />}
-                onClick={handleThemeChange}
+                onClick={handleLanguageChange}
               />
             </div>
           </div>

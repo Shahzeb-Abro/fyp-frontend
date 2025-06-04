@@ -11,7 +11,9 @@ const ROUTES = {
   HISTORY: "history",
   SETTINGS: "/settings",
   THEME_SETTINGS: "/settings/theme",
-  ACCOUNT_SETTINGS: "/settings/account",
+  ACCOUNT_SETTINGS: "/settings/password",
+  PROFILE_SETTINGS: "/settings/profile",
+  LANGUAGE_SETTINGS: "/settings/language",
 };
 
 export default ROUTES;

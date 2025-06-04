@@ -14,6 +14,8 @@ import {
 } from "../../../../../lib/toastUtils";
 import { useMutation } from "@tanstack/react-query";
 import { changePassword } from "../../../../../api/auth";
+import { Logout } from "../logout";
+import { FormattedMessage } from "react-intl";
 
 export const AccountSettings = () => {
   useEffect(() => {
@@ -64,28 +66,30 @@ export const AccountSettings = () => {
     };
     changePasswordMutation(formattedBody);
   };
+
+  const selectedLanguage = localStorage.getItem("language");
   return (
     <div className="w-full flex-1 max-h-dvh h-full bg-surface-2 ">
       <PageHeader title="Settings" />
-      <div className="flex flex-1 h-[calc(100vh-81px)]">
-        <div className="hidden pl-8 py-5 pr-4 border-r border-neutral-200 dark:border-neutral-800 lg:flex flex-col gap-2 w-[260px] h-full">
+      <div
+        className={`lg:flex-row p-6 flex gap-6 flex-col flex-1 bg-neutral-50/75  dark:bg-neutral-900 ${
+          selectedLanguage === "ur" ? "rounded-tr-[40px]" : "rounded-tl-[40px]"
+        } h-[calc(100vh-81px-80px)] lg:h-[calc(100vh-81px)] overflow-y-auto`}
+      >
+        <div
+          className={` pl-8 py-5 pr-4 hidden border-neutral-200 dark:border-neutral-800 lg:flex flex-col gap-2 w-[260px] h-full ${
+            selectedLanguage === "ur" ? "border-l" : "border-r"
+          }`}
+        >
           <Links />
-          <Link
-            to={ROUTES.LOGIN}
-            className="flex items-center gap-2 py-2.5 text-preset-4 text-secondary-text px-4 hover:bg-blue-50 dark:hover:bg-neutral-800 rounded-lg "
-          >
-            <span>
-              <LogoutIcon />
-            </span>
-            <span>Logout</span>
-          </Link>
+          <Logout />
         </div>
 
         <div className="flex-1 rounded-t-xl ">
           <div className="p-4 md:p-8 max-w-[528px] flex flex-col gap-6">
             <div className="flex flex-col gap-1">
-              <h2 className="text-preset-3 text-primary-text font-semibold">
-                Change Password
+              <h2 className="text-2xl text-primary-text font-semibold">
+                <FormattedMessage id="SETTINGS.CHANGE_PASSWORD" />
               </h2>
             </div>
 
@@ -106,7 +110,7 @@ export const AccountSettings = () => {
                     )}
                   </span>
                 }
-                label="Old Password"
+                label={<FormattedMessage id="SETTINGS.OLD_PASSWORD" />}
                 type={isOldPasswordVisible ? "text" : "password"}
                 error={errors.oldPassword?.message}
                 registerProps={register("oldPassword")}
@@ -125,12 +129,16 @@ export const AccountSettings = () => {
                     )}
                   </span>
                 }
-                label="New Password"
+                label={<FormattedMessage id="SETTINGS.NEW_PASSWORD" />}
                 type={isNewPasswordVisible ? "text" : "password"}
                 error={errors.newPassword?.message}
                 registerProps={register("newPassword")}
                 hint={
-                  errors.newPassword?.message ? "" : "At least 8 characters"
+                  errors.newPassword?.message ? (
+                    ""
+                  ) : (
+                    <FormattedMessage id="SETTINGS.ATLEAST_8_CHARACTERS" />
+                  )
                 }
               />
 
@@ -147,7 +155,7 @@ export const AccountSettings = () => {
                     )}
                   </span>
                 }
-                label="Confirm New Password"
+                label={<FormattedMessage id="SETTINGS.CONFIRM_PASSWORD" />}
                 type={isConfirmPasswordVisible ? "text" : "password"}
                 error={errors.confirmPassword?.message}
                 registerProps={register("confirmPassword")}
@@ -155,9 +163,10 @@ export const AccountSettings = () => {
 
               <div className="flex justify-end w-full">
                 <Button
-                  label={isPending ? "Saving..." : "Save Password"}
+                  label={<FormattedMessage id="SETTINGS.SAVE_PASSWORD" />}
                   type="submit"
                   disabled={isPending}
+                  isLoading={isPending}
                 />
               </div>
             </form>

@@ -17,9 +17,9 @@ export const Option = ({
         <div className="size-10 flex items-center text-primary-text justify-center rounded-xl border border-neutral-200 dark:border-neutral-800 bg-surface-2">
           {icon}
         </div>
-        <div className="flex flex-col gap-1.5">
-          <p className="text-preset-4 font-medium text-primary-text">{title}</p>
-          <p className="text-preset-5 text-neutral-700 dark:text-neutral-300">
+        <div className="flex flex-col ">
+          <p className="text-md font-medium text-primary-text">{title}</p>
+          <p className="text-sm text-neutral-700 dark:text-neutral-300">
             {subtitle}
           </p>
         </div>

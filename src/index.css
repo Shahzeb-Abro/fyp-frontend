@@ -162,7 +162,7 @@ body.dark {
   --shadow-lg: none;
   --shadow-sm: none;
 
-  --color-card-bg: var(--color-neutral-900);
+  --color-card-bg: var(--color-neutral-700);
   --color-card-border: var(--color-neutral-700);
 
   --color-btn-primary-bg: var(--color-neutral-50);
@@ -207,4 +207,117 @@ body.dark {
 
 .custom-modal .ant-modal-header {
   background: transparent !important;
+}
+
+.ant-table-body {
+  overflow: hidden;
+}
+
+.ant-table {
+  background-color: transparent !important;
+}
+
+.ant-table-body ::-webkit-scrollbar,
+.ant-table-content ::-webkit-scrollbar {
+  width: 3px !important;
+  background: var(--color-neutral-100) !important;
+  border-radius: 12px !important;
+  padding: 3px !important;
+}
+
+.ant-table-body ::-webkit-scrollbar-thumb,
+.ant-table-content ::-webkit-scrollbar-thumb {
+  background-color: var(--color-neutral-400) !important;
+  padding: 3px !important;
+  width: 3px !important;
+  border-radius: 10px !important;
+}
+
+.custom-table {
+  font-family: "Geist" !important;
+}
+
+.custom-table th.ant-table-cell {
+  background-color: transparent !important;
+  font-size: 12px !important;
+  line-height: 150% !important;
+  color: #696868 !important;
+  font-feature-settings: "liga" off, "clig" off !important;
+  font-weight: 400 !important;
+  font-family: "Geist" !important;
+  padding: 12px 16px !important;
+}
+
+.dark .custom-table th.ant-table-cell,
+.dark .custom-table .ant-table-cell {
+  background-color: transparent !important;
+  font-size: 12px !important;
+  line-height: 150% !important;
+  color: var(--color-neutral-200) !important;
+  font-feature-settings: "liga" off, "clig" off !important;
+  font-weight: 400 !important;
+  font-family: "Geist" !important;
+  padding: 12px 16px !important;
+  border: none !important;
+  border-bottom: 1px solid var(--color-neutral-700) !important;
+}
+
+.custom-table td.ant-table-cell {
+  font-family: "Geist" !important;
+  padding: 12px !important;
+}
+
+/* @media (max-width: 768px) {
+  .custom-table th.ant-table-cell {
+    display: none !important;
+  }
+} */
+
+.custom-table th.ant-table-cell::before {
+  display: none !important;
+}
+
+.pagination-container ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pagination-container ul li.ant-pagination-prev {
+  margin-right: auto;
+}
+
+.pagination-container ul li {
+  transition: all 0.2s;
+}
+
+.pagination-container ul li:hover {
+  background-color: var(--color-neutral-500) !important;
+  color: #fff !important;
+}
+
+.pagination-container ul li.ant-pagination-next {
+  margin-left: auto;
+}
+
+.pagination-container ul li.ant-pagination-item,
+.pagination-container ul li.ant-pagination-jump-next,
+.pagination-container ul li.ant-pagination-jump-prev {
+  border-radius: 8px;
+  border: 1px solid var(--color-neutral-600);
+  width: 40px;
+  height: 40px;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 150%;
+  font-feature-settings: "liga" off, "clig" off;
+  color: var(--color-neutral-950);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Geist";
+}
+
+.pagination-container ul li.ant-pagination-item-active {
+  color: #fff;
+  background: var(--color-neutral-700);
 }

@@ -3,8 +3,13 @@ import { Outlet } from "react-router-dom";
 import { Sidebar, Tabs } from "./components";
 
 export const DashborardLayout = () => {
+  const selectedLanguage = localStorage.getItem("language");
   return (
-    <main className="flex bg-surface-2 bg-su relative min-h-dvh max-h-dvh w-full pl-6 gap-6">
+    <main
+      className={`flex bg-surface-2  relative h-screen w-full  gap-6 ${
+        selectedLanguage === "ur" ? "lg:pr-6" : "lg:pl-6"
+      }`}
+    >
       <div className="hidden lg:block pt-6">
         <Sidebar />
       </div>

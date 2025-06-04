@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import { PageHeader } from "../../../layout/dashboardLayout/components";
-import { Button } from "../../../generalComponents";
+import { Button, Table } from "../../../generalComponents";
 import { Link } from "react-router-dom";
 import illustrationEmpty from "../../../assets/illustration-empty.svg";
 import illustrationEmptyDark from "../../../assets/illustration-empty-dark.svg";
 import { useQuery } from "@tanstack/react-query";
 import { getHistory } from "../../../api/history";
 import { badgeStyles } from "../detection";
+import { AddMediaImageIcon } from "../../../assets/svgAssets";
+import { FormattedDate, FormattedMessage } from "react-intl";
 
 export const Dashboard = () => {
   useEffect(() => {
@@ -19,57 +21,97 @@ export const Dashboard = () => {
   });
 
   const history = data?.data?.history?.slice(0, 6) || [];
+
+  const columns = [
+    {
+      title: <FormattedMessage id="HISTORY.DATE" />,
+      dataIndex: "createdAt",
+      key: "createdAt",
+      render: (createdAt) => (
+        <span>
+          <FormattedDate value={createdAt} />
+        </span>
+      ),
+      width: 100,
+    },
+    {
+      title: <FormattedMessage id="HISTORY.RESULT" />,
+      dataIndex: "result",
+      key: "result",
+      render: (result) => (
+        <span
+          className={`px-3 py-1 text-sm font-medium rounded-full inline-block whitespace-nowrap
+      ${badgeStyles[result]?.bg || "bg-neutral-200 dark:bg-neutral-800"}
+      ${badgeStyles[result]?.text || "text-primary-text"}
+    `}
+        >
+          {result}
+        </span>
+      ),
+      width: 150,
+    },
+    {
+      title: <FormattedMessage id="HISTORY.IMAGE" />,
+      dataIndex: "imgUrl",
+      key: "imgUrl",
+      render: (imgUrl) => (
+        <a href={imgUrl} target="_blank" rel="noopener noreferrer">
+          <span className="text-primary-text">
+            <AddMediaImageIcon width={24} height={24} />
+          </span>
+        </a>
+      ),
+      width: 50,
+    },
+  ];
+
+  const selectedLanguage = localStorage.getItem("language");
+
   return (
-    <main className="w-full h-dvh ">
-      <PageHeader title="Dashbaord" />
-      <div className="lg:flex-row p-6 flex gap-6 flex-col flex-1 bg-neutral-50/75  dark:bg-neutral-900 rounded-tl-[40px] h-[calc(100vh-81px-80px)] lg:h-[calc(100vh-81px)] overflow-y-auto">
+    <main className="w-full h-screen overflow-hidden">
+      <PageHeader title={<FormattedMessage id="DASHBOARD.TITLE" />} />
+      <div
+        className={`lg:flex-row p-6 flex gap-6 flex-col flex-1 lg:bg-neutral-50/75  lg:dark:bg-neutral-900 ${
+          selectedLanguage === "ur" ? "rounded-tr-[40px]" : "rounded-tl-[40px]"
+        } h-[calc(100vh-81px-80px)] lg:h-[calc(100vh-81px)] overflow-y-auto`}
+      >
         <div className="flex flex-col gap-6 flex-1/2">
           {/* Detect Card  */}
           <div className="flex flex-col items-center justify-center text-center gap-6 p-6 lg:px-12 lg:py-10 lg:rounded-[48px] bg-white dark:bg-surface-2 rounded-xl  border border-neutral-200 dark:border-neutral-800">
             <div className="flex flex-col gap-2">
               <h1 className="text-display-xs text-primary-text ">
-                Start Detecting
+                <FormattedMessage id="DASHBOARD.START_DETECTING" />
               </h1>
               <p className="text-md font-medium text-secondary-text">
-                Detect your ulcer with only one click using our precise AI
-                algorithm for free, today.
+                <FormattedMessage id="DASHBOARD.DETECT_ULCER_DESCRIPTION" />
               </p>
             </div>
             <Link to={"/detect"}>
-              <Button label="Detect Ulcer" />
+              <Button label={<FormattedMessage id="BUTTON.DETECT_ULCER" />} />
             </Link>
           </div>
 
           {/* Doctors Card  */}
-          <div className="flex flex-col gap-6 p-6 rounded-xl bg-neutral-50 border border-neutral-200 dark:bg-neutral-800 dark:border-neutral-700">
-            <div className="flex items-center gap-4 justify-between pb-4 border-b border-neutral-200 dark:border-neutral-700">
+          <div className="flex flex-col  justify-center text-center gap-6 overflow-hidden  lg:rounded-[48px] bg-white dark:bg-surface-2 rounded-xl  border border-neutral-200 dark:border-neutral-800">
+            <div className="flex items-center bg-primary-50 dark:bg-primary-900/25 justify-between p-4 md:p-8 pb-6 md:pb-8  gap-4  border-b border-neutral-200 dark:border-neutral-700">
               <h2 className="text-preset-2 font-medium text-primary-text">
-                Top Doctors
+                <FormattedMessage id="DASHBOARD.TOP_DOCTORS" />
               </h2>
               <Link
                 to={"/doctors"}
                 className="text-preset-3 font-semibold text-green-500 underline"
               >
-                View all{" "}
+                <FormattedMessage id="DASHBOARD.SEE_ALL" />
               </Link>
             </div>
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center p-4 pb-8">
               <div className="flex items-center flex-col gap-4 text-center text-primary-text ">
-                <img
-                  src={illustrationEmpty}
-                  alt="Empty Illustration"
-                  className="dark:hidden"
-                />
-                <img
-                  src={illustrationEmptyDark}
-                  alt="Empty Illustration"
-                  className="hidden dark:block"
-                />
-                <div className="flex flex-col gap-2">
-                  <h3 className="text-preset-2">No doctors yet.</h3>
-                  <p className="text-preset-3 text-secondary-text">
-                    But no worries, soon you'll be able to find doctors'
-                    information here.
+                <div className="flex flex-col gap-1">
+                  <h3 className="text-lg font-medium">
+                    <FormattedMessage id="DASHBOARD.NO_DOCTORS" />
+                  </h3>
+                  <p className="text-sm text-secondary-text">
+                    <FormattedMessage id="DASHBOARD.NO_DOCTORS_DESCRIPTION" />
                   </p>
                 </div>
               </div>
@@ -80,39 +122,29 @@ export const Dashboard = () => {
         <div className="flex flex-col gap-6 flex-1/2">
           {/* History Card  */}
 
-          <div className="flex flex-col gap-6 p-6 rounded-xl bg-neutral-50 border border-neutral-200 dark:bg-neutral-800 dark:border-neutral-700">
-            <div className="flex items-center gap-4 justify-between pb-4 border-b border-neutral-200 dark:border-neutral-700">
+          <div className="flex flex-col  justify-center text-center gap-6  overflow-hidden lg:rounded-[48px] bg-white dark:bg-surface-2 rounded-xl  border border-neutral-200 dark:border-neutral-800">
+            <div className="flex items-center gap-4 bg-primary-50 dark:bg-primary-900/25 justify-between p-4 md:p-8 pb-6 md:pb-8 border-b border-neutral-200 dark:border-neutral-700">
               <h2 className="text-preset-2 font-medium text-primary-text">
-                Detection History
+                <FormattedMessage id="DASHBOARD.DETECTION_HISTORY" />
               </h2>
               <Link
                 to={"/history"}
                 className="text-preset-3 font-semibold text-green-500 underline"
               >
-                View all{" "}
+                <FormattedMessage id="DASHBOARD.SEE_ALL" />
               </Link>
             </div>
-            <div className="">
+            <div className="p-4 pb-12">
               {isLoading ? (
                 <p className="text-secondary-text">Loading...</p>
               ) : history?.length === 0 ? (
                 <div className="flex items-center justify-center h-full">
-                  <div className="flex items-center flex-col gap-4 text-center text-primary-text mt-16">
-                    <img
-                      src={illustrationEmpty}
-                      alt="Empty Illustration"
-                      className="dark:hidden"
-                    />
-                    <img
-                      src={illustrationEmptyDark}
-                      alt="Empty Illustration"
-                      className="hidden dark:block"
-                    />
-                    <div className="flex flex-col gap-2">
-                      <h3 className="text-preset-2">
+                  <div className="flex items-center flex-col gap-4 text-center text-primary-text">
+                    <div className="flex flex-col gap-1">
+                      <h3 className="text-lg font-medium">
                         You don't have any history yet.
                       </h3>
-                      <p className="text-preset-3 text-secondary-text">
+                      <p className="text-sm text-secondary-text">
                         Once you start detecting, your history will be shown
                         here.
                       </p>
@@ -120,62 +152,7 @@ export const Dashboard = () => {
                   </div>
                 </div>
               ) : (
-                <div className=" rounded-lg shadow-sm dark:shadow-none max-w-3xl mx-auto border border-neutral-200 dark:border-neutral-800">
-                  <table className="min-w-full divide-y divide-neutral-200 dark:divide-neutral-800">
-                    <thead className="bg-neutral-100 dark:bg-neutral-900">
-                      <tr>
-                        <th className="px-4 py-3 text-left text-sm font-medium text-primary-text">
-                          Image
-                        </th>
-                        <th className="px-4 py-3 text-left text-sm font-medium text-primary-text">
-                          Result
-                        </th>
-                        <th className="px-4 py-3 text-left text-sm font-medium text-primary-text">
-                          Date
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="bg-white dark:bg-neutral-950 divide-y divide-neutral-100 dark:divide-neutral-800">
-                      {history?.map((entry) => (
-                        <tr key={entry.createdAt}>
-                          <td className="px-4 py-3">
-                            <a
-                              href={entry.imgUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-blue-600 dark:text-blue-400 underline hover:opacity-80"
-                            >
-                              View Image
-                            </a>
-                          </td>
-                          <td className="px-4 py-3 font-medium">
-                            <span
-                              className={`px-3 py-1 text-sm font-medium rounded-full inline-block whitespace-nowrap
-                 ${
-                   badgeStyles[entry.result]?.bg ||
-                   "bg-neutral-200 dark:bg-neutral-800"
-                 }
-                 ${badgeStyles[entry.result]?.text || "text-primary-text"}
-               `}
-                            >
-                              {entry.result}
-                            </span>
-                          </td>
-                          <td className="px-4 py-3 text-sm text-secondary-text">
-                            {new Date(entry.createdAt).toLocaleDateString(
-                              undefined,
-                              {
-                                year: "numeric",
-                                month: "short",
-                                day: "numeric",
-                              }
-                            )}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                <Table columns={columns} data={history} pagination={false} />
               )}
             </div>
           </div>

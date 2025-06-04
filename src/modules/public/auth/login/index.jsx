@@ -129,8 +129,9 @@ export const Login = () => {
           />
           <Button
             type="submit"
-            label={isPending ? "Loading..." : "Login"}
+            label={"Login"}
             disabled={isPending}
+            isLoading={isPending}
           />
         </form>
 

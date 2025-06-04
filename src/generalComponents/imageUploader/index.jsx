@@ -1,10 +1,15 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Button } from "../button";
 import { AddMediaImageIcon, UploadIcon } from "../../assets/svgAssets";
 
-export const ImageUploader = ({ image, setImage, isSensitive }) => {
+export const ImageUploader = ({
+  image,
+  setImage,
+  isSensitive,
+  ref,
+  isHistory = false,
+}) => {
   const [showSensitiveImage, setShowSensitiveImage] = useState(false);
-  const fileInputRef = useRef(null);
 
   // Handle image upload and convert to Base64
   const handleImageUpload = (event) => {
@@ -44,7 +49,6 @@ export const ImageUploader = ({ image, setImage, isSensitive }) => {
           )}
         </div>
       ) : (
-        // Default Upload UI
         <div className="flex flex-col items-center justify-center w-fullbg-[#f5fee7] rounded-xl">
           <span className="text-primary-700 dark:text-primary-300">
             <AddMediaImageIcon />
@@ -66,14 +70,14 @@ export const ImageUploader = ({ image, setImage, isSensitive }) => {
           accept="image/png, image/jpeg"
           className="hidden"
           onChange={handleImageUpload}
-          ref={fileInputRef}
+          ref={ref}
         />
 
         <div className="flex items-center gap-2 w-full justify-center">
-          {image && (
+          {image && !isHistory && (
             <Button
               type="button"
-              onClick={() => fileInputRef.current.click()}
+              onClick={() => ref.current.click()}
               label={"Change Image"}
             />
           )}
@@ -88,7 +92,7 @@ export const ImageUploader = ({ image, setImage, isSensitive }) => {
           ) : (
             <Button
               type="button"
-              onClick={() => fileInputRef.current.click()}
+              onClick={() => ref.current.click()}
               label={"Upload"}
               variant="secondary"
               hasPreIcon

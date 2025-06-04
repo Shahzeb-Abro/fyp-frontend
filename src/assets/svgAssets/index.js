@@ -26,6 +26,10 @@ import { SidebarExpand } from "./SidebarExpand";
 import { AddMediaImageIcon } from "./AddImageMediaIcon";
 import { UploadIcon } from "./UploadIcon";
 import { CancelIcon } from "./CancelIcon";
+import { NoDataFoundIcon } from "./NoDataFoundIcon";
+import { TrashIcon } from "./TrashIcon";
+import { ProfileIcon } from "./ProfileIcon";
+import { TranslationIcon } from "./TranslationIcon";
 
 export {
   Logo,
@@ -56,4 +60,8 @@ export {
   AddMediaImageIcon,
   UploadIcon,
   CancelIcon,
+  NoDataFoundIcon,
+  TrashIcon,
+  ProfileIcon,
+  TranslationIcon,
 };

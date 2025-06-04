@@ -33,7 +33,7 @@ export const CustomModal = ({
       }
       footer={
         footer ? (
-          <div className="pt-4 border-t border-neutral-100 dark:border-neutral-600">
+          <div className="pt-4 border-t border-neutral-100 dark:border-neutral-800">
             {footer}
           </div>
         ) : null
