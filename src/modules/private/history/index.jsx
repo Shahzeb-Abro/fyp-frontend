@@ -159,56 +159,6 @@ export const History = () => {
             </div>
           </div>
         ) : (
-          //       <div className="h-[calc(100vh-81px-80px-30px)] lg:h-[calc(100vh-81px-50px)] overflow-y-auto rounded-lg shadow-sm dark:shadow-none max-w-3xl mx-auto border border-neutral-200 dark:border-neutral-800">
-          //         <table className="min-w-full divide-y divide-neutral-200 dark:divide-neutral-800">
-          //           <thead className="bg-neutral-100 dark:bg-neutral-900">
-          //             <tr>
-          //               <th className="px-4 py-3 text-left text-sm font-medium text-primary-text">
-          //                 Image
-          //               </th>
-          //               <th className="px-4 py-3 text-left text-sm font-medium text-primary-text">
-          //                 Result
-          //               </th>
-          //               <th className="px-4 py-3 text-left text-sm font-medium text-primary-text">
-          //                 Date
-          //               </th>
-          //             </tr>
-          //           </thead>
-          //           <tbody className="bg-white dark:bg-neutral-950 divide-y divide-neutral-100 dark:divide-neutral-800">
-          //             {history?.map((entry) => (
-          //               <tr key={entry.createdAt}>
-          //                 <td className="px-4 py-3">
-          //                   <a
-          //                     href={entry.imgUrl}
-          //                     target="_blank"
-          //                     rel="noopener noreferrer"
-          //                     className="text-blue-600 dark:text-blue-400 underline hover:opacity-80"
-          //                   >
-          //                     View Image
-          //                   </a>
-          //                 </td>
-          //                 <td className="px-4 py-3 font-medium">
-          //                   <span
-          //                     className={`px-3 py-1 text-sm font-medium rounded-full inline-block whitespace-nowrap
-          //   ${badgeStyles[entry.result]?.bg || "bg-neutral-200 dark:bg-neutral-800"}
-          //   ${badgeStyles[entry.result]?.text || "text-primary-text"}
-          // `}
-          //                   >
-          //                     {entry.result}
-          //                   </span>
-          //                 </td>
-          //                 <td className="px-4 py-3 text-sm text-secondary-text">
-          //                   {new Date(entry.createdAt).toLocaleDateString(undefined, {
-          //                     year: "numeric",
-          //                     month: "short",
-          //                     day: "numeric",
-          //                   })}
-          //                 </td>
-          //               </tr>
-          //             ))}
-          //           </tbody>
-          //         </table>
-          //       </div>
           <div className="max-w-4xl w-full mx-auto flex-1 flex flex-col gap-4 p-4 lg:p-8 rounded-[32px] bg-neutral-0 dark:bg-neutral-800">
             <div className="flex justify-end">
               <Button
