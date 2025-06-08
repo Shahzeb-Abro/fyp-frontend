@@ -13,12 +13,12 @@ export const FAQs = () => {
   return (
     <section className="max-w-[1110px] mx-auto px-4 lg:px-0 py-10 md:py-24 flex flex-col gap-16 lg:gap-20">
       <div>
-        <div className="px-6 py-2 bg-primary-50 text-primary-900 rounded-full text-sm font-medium uppercase border border-primary-200 justify-self-center">
+        <div className="px-6 py-2 bg-primary-50 dark:bg-primary-900 text-primary-900 dark:text-primary-50 rounded-full text-sm font-medium uppercase border border-primary-200 dark:border-primary-700 justify-self-center">
           <FormattedMessage id="LANDING.FAQs" />
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div>
         {faqData.map((faq, index) => (
           <FAQItem
             key={index}
@@ -41,13 +41,13 @@ const FAQItem = ({ questionId, answerId }) => {
   return (
     <div className="px-6">
       <button
-        className="flex justify-between p-3 border-b border-slate-300 items-center  hover:bg-gray-100 transition-all w-full text-left text-slate-800 font-semibold"
+        className="flex justify-between p-3 border-b border-slate-300 items-center  hover:bg-gray-100 dark:hover:bg-neutral-800 transition-all w-full text-left text-slate-800 font-semibold"
         onClick={toggleOpen}
       >
         <span className="font-semibold text-primary-text">
           <FormattedMessage id={questionId} />
         </span>
-        <span className="text-lg">{isOpen ? "-" : "+"}</span>
+        <span className="text-lg text-primary-text">{isOpen ? "-" : "+"}</span>
       </button>
       {isOpen && (
         <p className="mt-2 text-secondary-text p-2 text-sm font-medium leading-relaxed ">
