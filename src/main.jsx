@@ -54,7 +54,7 @@ export const Root = () => {
         <QueryClientProvider client={queryClient}>
           <App />
           <Toaster richColors position="top-right" />
-          <ReactQueryDevtools initialIsOpen={false} />
+          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
         </QueryClientProvider>
       </IntlProvider>
     </StrictMode>

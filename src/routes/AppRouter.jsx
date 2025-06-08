@@ -17,6 +17,7 @@ import {
 import { useEffect, useState } from "react";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { LanguageSettings } from "../modules/private/settings/components/language";
+import { LandingPage } from "../modules/public/landingPage";
 
 export const AppRouter = () => {
   const [currentLanguage, setCurrentLanguage] = useState(
@@ -50,11 +51,13 @@ export const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={ROUTES.LANDING} element={<p>Home</p>} />
         <Route path={ROUTES.LOGIN} element={<Login />} />
         <Route path={ROUTES.REGISTER} element={<Register />} />
         <Route path={ROUTES.FORGOT_PASSWORD} element={<ForgotPassword />} />
         <Route path={ROUTES.RESET_PASSWORD} element={<ResetPassword />} />
+
+        {/* Landing Page  */}
+        <Route path={ROUTES.LANDING} element={<LandingPage />} />
 
         <Route
           path={ROUTES.DASHBOARD}
