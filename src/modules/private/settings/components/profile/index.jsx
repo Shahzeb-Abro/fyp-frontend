@@ -76,7 +76,7 @@ export const ProfileSettings = () => {
               Delete my account
             </h3>
             <p className="text-md text-secondary-text mt-2">
-              Click on following button button to delete your account.
+              Click on following button button to delete your account...
             </p>
             <Button
               label="Delete my account"
