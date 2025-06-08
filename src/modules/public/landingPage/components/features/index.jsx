@@ -60,10 +60,10 @@ export const Features = () => {
         {featuresData.map((feature) => (
           <div key={feature.id} className="bg-surface-2 rounded-lg p-6">
             <span className="text-primary-500">{feature.icon}</span>
-            <h3 className="text-lg font-medium mt-6">
+            <h3 className="text-lg font-medium mt-6 text-primary-text">
               <FormattedMessage id={feature.title} />
             </h3>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-secondary-text">
               <FormattedMessage id={feature.description} />
             </p>
           </div>

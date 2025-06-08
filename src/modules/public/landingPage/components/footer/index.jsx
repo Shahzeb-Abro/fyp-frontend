@@ -2,7 +2,7 @@ import { LogoLink } from "../../../../../layout/dashboardLayout/components/sideb
 
 export const Footer = () => {
   return (
-    <footer className="w-full py-16 px-4 bg-neutral-950 text-white rounded-t-3xl">
+    <footer className="w-full py-16 px-4 bg-neutral-950 dark:bg-neutral-700 text-white rounded-t-3xl">
       <div>
         <div className="flex items-center justify-between gap-4 max-w-[1110px] mx-auto">
           <span>

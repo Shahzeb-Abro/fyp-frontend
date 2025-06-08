@@ -44,13 +44,13 @@ const FAQItem = ({ questionId, answerId }) => {
         className="flex justify-between p-3 border-b border-slate-300 items-center  hover:bg-gray-100 transition-all w-full text-left text-slate-800 font-semibold"
         onClick={toggleOpen}
       >
-        <span className="font-semibold text-slate-800">
+        <span className="font-semibold text-primary-text">
           <FormattedMessage id={questionId} />
         </span>
         <span className="text-lg">{isOpen ? "-" : "+"}</span>
       </button>
       {isOpen && (
-        <p className="mt-2 text-slate-700 p-2 text-sm font-medium leading-relaxed">
+        <p className="mt-2 text-secondary-text p-2 text-sm font-medium leading-relaxed ">
           <FormattedMessage id={answerId} />
         </p>
       )}
