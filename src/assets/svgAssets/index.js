@@ -30,6 +30,12 @@ import { NoDataFoundIcon } from "./NoDataFoundIcon";
 import { TrashIcon } from "./TrashIcon";
 import { ProfileIcon } from "./ProfileIcon";
 import { TranslationIcon } from "./TranslationIcon";
+import { BilingualIcon } from "./Bilingual";
+import { InterfaceIcon } from "./InterfaceIcon";
+import { FreeIcon } from "./FreeIcon";
+import { FastIcon } from "./FastIcon";
+import { TargetIcon } from "./TargetIcon";
+import { DetectLarge } from "./DetectLarge";
 
 export {
   Logo,
@@ -64,4 +70,10 @@ export {
   TrashIcon,
   ProfileIcon,
   TranslationIcon,
+  BilingualIcon,
+  InterfaceIcon,
+  FreeIcon,
+  FastIcon,
+  TargetIcon,
+  DetectLarge,
 };

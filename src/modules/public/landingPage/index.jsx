@@ -1,4 +1,4 @@
-import { About, Hero, Navbar } from "./components";
+import { About, Features, FAQs, Footer, Hero, Navbar } from "./components";
 
 export const LandingPage = () => {
   return (
@@ -6,6 +6,9 @@ export const LandingPage = () => {
       <Navbar />
       <Hero />
       <About />
+      <Features />
+      <FAQs />
+      <Footer />
     </main>
   );
 };
