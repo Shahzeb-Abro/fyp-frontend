@@ -22,8 +22,6 @@ export const Logout = () => {
       localStorage.removeItem("user");
       localStorage.removeItem("isAuthenticated");
 
-      showSuccessToast("Logged out successfully. Redirecting...");
-
       navigate(ROUTES.LOGIN, { replace: true });
     },
     onError: (error) => {

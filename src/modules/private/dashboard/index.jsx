@@ -2,13 +2,13 @@ import { useEffect } from "react";
 import { PageHeader } from "../../../layout/dashboardLayout/components";
 import { Button, Table } from "../../../generalComponents";
 import { Link } from "react-router-dom";
-import illustrationEmpty from "../../../assets/illustration-empty.svg";
-import illustrationEmptyDark from "../../../assets/illustration-empty-dark.svg";
+
 import { useQuery } from "@tanstack/react-query";
 import { getHistory } from "../../../api/history";
 import { badgeStyles } from "../detection";
 import { AddMediaImageIcon } from "../../../assets/svgAssets";
 import { FormattedDate, FormattedMessage } from "react-intl";
+import { doctorsData } from "../doctors";
 
 export const Dashboard = () => {
   useEffect(() => {
@@ -65,10 +65,41 @@ export const Dashboard = () => {
     },
   ];
 
+  const doctorColumns = [
+    {
+      title: "Doctor",
+      dataIndex: "name",
+      key: "name",
+      render: (text, record) => (
+        <div className="flex items-center gap-3">
+          <img
+            src={record.image}
+            alt={`${text}'s photo`}
+            className="w-10 h-10 rounded-full object-cover"
+          />
+          <div>
+            <div className="font-medium text-primary-text">{text}</div>
+            <div className="text-xs text-secondary-text">{record.email}</div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: "Specialization",
+      dataIndex: "specialization",
+      key: "specialization",
+    },
+    {
+      title: "Patients Treated",
+      dataIndex: "patientsTreated",
+      key: "patientsTreated",
+    },
+  ];
+
   const selectedLanguage = localStorage.getItem("language");
 
   return (
-    <main className="w-full h-screen overflow-hidden">
+    <main className="w-full min-h-screen">
       <PageHeader title={<FormattedMessage id="DASHBOARD.TITLE" />} />
       <div
         className={`lg:flex-row p-6 flex gap-6 flex-col flex-1 lg:bg-neutral-50/75  lg:dark:bg-neutral-900 ${
@@ -92,8 +123,8 @@ export const Dashboard = () => {
           </div>
 
           {/* Doctors Card  */}
-          <div className="flex flex-col  justify-center text-center gap-6 overflow-hidden  lg:rounded-[48px] bg-white dark:bg-surface-2 rounded-xl  border border-neutral-200 dark:border-neutral-800">
-            <div className="flex items-center bg-primary-50 dark:bg-primary-900/25 justify-between p-4 md:p-8 pb-6 md:pb-8  gap-4  border-b border-neutral-200 dark:border-neutral-700">
+          <div className="flex flex-col  justify-center text-center gap-6   lg:rounded-[48px] bg-white dark:bg-surface-2 rounded-xl  border border-neutral-200 dark:border-neutral-800">
+            <div className="flex items-center gap-4 lg:rounded-t-[48px]  bg-primary-50 dark:bg-primary-900/25 justify-between p-4 md:p-8 pb-6 md:pb-8 border-b border-neutral-200 dark:border-neutral-700">
               <h2 className="text-preset-2 font-medium text-primary-text">
                 <FormattedMessage id="DASHBOARD.TOP_DOCTORS" />
               </h2>
@@ -106,14 +137,11 @@ export const Dashboard = () => {
             </div>
             <div className="flex items-center justify-center p-4 pb-8">
               <div className="flex items-center flex-col gap-4 text-center text-primary-text ">
-                <div className="flex flex-col gap-1">
-                  <h3 className="text-lg font-medium">
-                    <FormattedMessage id="DASHBOARD.NO_DOCTORS" />
-                  </h3>
-                  <p className="text-sm text-secondary-text">
-                    <FormattedMessage id="DASHBOARD.NO_DOCTORS_DESCRIPTION" />
-                  </p>
-                </div>
+                <Table
+                  columns={doctorColumns}
+                  data={doctorsData.slice(0, 2)}
+                  pagination={false}
+                />
               </div>
             </div>
           </div>

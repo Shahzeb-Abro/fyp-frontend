@@ -43,7 +43,6 @@ export const Register = () => {
       localStorage.setItem("user", JSON.stringify(data.user));
       localStorage.setItem("isAuthenticated", true);
 
-      showSuccessToast("Registered successfully. Redirecting...");
 
       navigate(ROUTES.DASHBOARD, { replace: true });
     },

@@ -43,7 +43,6 @@ export const Login = () => {
       localStorage.setItem("user", JSON.stringify(data.user));
       localStorage.setItem("isAuthenticated", true);
 
-      showSuccessToast("Logged in successfully. Redirecting...");
 
       navigate(ROUTES.DASHBOARD, { replace: true });
     },
