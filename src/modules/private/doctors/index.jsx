@@ -140,23 +140,10 @@ export const Doctors = () => {
       >
         {/* Mobile View */}
         <div className=" flex flex-col gap-6 flex-1/2">
-          <div className="max-w-4xl w-full mx-auto flex flex-col gap-4 p-4 lg:p-8 rounded-[32px] bg-neutral-0 dark:bg-neutral-800">
+          <div className="max-w-4xl w-[calc(100vw-50px)] md:w-full mx-auto flex flex-col gap-4 p-4 lg:p-8 rounded-[32px] bg-neutral-0 dark:bg-neutral-800">
             <Table columns={doctorColumns} data={doctorsData} />
           </div>
         </div>
-
-        {/* Desktop View */}
-        {/* <div className="hidden lg:flex flex-col gap-6 flex-1">
-          <div className="max-w-7xl w-full mx-auto grid grid-cols-2 gap-6 p-8">
-            {doctorsData.map((doctor) => (
-              <DoctorCard
-                key={doctor.id}
-                doctor={doctor}
-                onInfoClick={handleOpenModal}
-              />
-            ))}
-          </div>
-        </div> */}
       </div>
 
       {showModal && (
