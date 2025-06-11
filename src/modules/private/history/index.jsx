@@ -159,7 +159,7 @@ export const History = () => {
             </div>
           </div>
         ) : (
-          <div className="max-w-4xl w-[calc(100vw-10px)] md:w-full mx-auto flex flex-col gap-4 p-4 lg:p-8 rounded-[32px] bg-neutral-0 dark:bg-neutral-800">
+          <div className="max-w-4xl w-[calc(100vw-50px)] md:w-full mx-auto flex flex-col gap-4 p-4 lg:p-8 rounded-[32px] bg-neutral-0 dark:bg-neutral-800">
             <div className="flex justify-end">
               <Button
                 label="Delete All"
