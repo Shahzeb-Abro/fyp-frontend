@@ -33,7 +33,6 @@ export const Dashboard = () => {
         </span>
       ),
       width: 150,
-      fixed: "left",
     },
     {
       title: <FormattedMessage id="HISTORY.RESULT" />,
@@ -63,7 +62,6 @@ export const Dashboard = () => {
         </a>
       ),
       width: 100,
-      fixed: "right",
     },
   ];
 
@@ -108,7 +106,7 @@ export const Dashboard = () => {
           selectedLanguage === "ur" ? "rounded-tr-[40px]" : "rounded-tl-[40px]"
         } h-[calc(100vh-81px-80px)] lg:h-[calc(100vh-81px)] overflow-y-auto`}
       >
-        <div className="flex flex-col gap-6 flex-1/2">
+        <div className="flex flex-col gap-6 flex-1/2 w-[calc(100vw-50px)] md:w-full">
           {/* Detect Card  */}
           <div className="flex flex-col items-center justify-center text-center gap-6 p-6 lg:px-12 lg:py-10 lg:rounded-[48px] bg-white dark:bg-surface-2 rounded-xl  border border-neutral-200 dark:border-neutral-800">
             <div className="flex flex-col gap-2">
@@ -137,8 +135,8 @@ export const Dashboard = () => {
                 <FormattedMessage id="DASHBOARD.SEE_ALL" />
               </Link>
             </div>
-            <div className="flex items-center justify-center p-4 pb-8">
-              <div className="flex items-center flex-col gap-4 text-center text-primary-text ">
+            <div className="flex items-center justify-center p-4 pb-8 ">
+              <div className="flex items-center w-full flex-col gap-4 text-center text-primary-text ">
                 <Table
                   columns={doctorColumns}
                   data={doctorsData.slice(0, 2)}
@@ -149,10 +147,10 @@ export const Dashboard = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-6 flex-1/2">
+        <div className="flex flex-col gap-6 flex-1/2 w-[calc(100vw-50px)] md:w-full">
           {/* History Card  */}
 
-          <div className="flex flex-col  justify-center text-center gap-6  overflow-hidden lg:rounded-[48px] bg-white dark:bg-surface-2 rounded-xl  border border-neutral-200 dark:border-neutral-800">
+          <div className="flex flex-col w-full justify-center text-center gap-6  overflow-hidden lg:rounded-[48px] bg-white dark:bg-surface-2 rounded-xl  border border-neutral-200 dark:border-neutral-800">
             <div className="flex items-center gap-4 bg-primary-50 dark:bg-primary-900/25 justify-between p-4 md:p-8 pb-6 md:pb-8 border-b border-neutral-200 dark:border-neutral-700">
               <h2 className="text-preset-2 font-medium text-primary-text">
                 <FormattedMessage id="DASHBOARD.DETECTION_HISTORY" />
@@ -164,7 +162,7 @@ export const Dashboard = () => {
                 <FormattedMessage id="DASHBOARD.SEE_ALL" />
               </Link>
             </div>
-            <div className="p-4 pb-12">
+            <div className="p-4 pb-12 w-full">
               {isLoading ? (
                 <p className="text-secondary-text">Loading...</p>
               ) : history?.length === 0 ? (
@@ -183,7 +181,7 @@ export const Dashboard = () => {
                 </div>
               ) : (
                 <div className="w-full">
-                  <div className="overflow-x-auto">
+                  <div className="overflow-x-auto w-full">
                     <Table
                       columns={columns}
                       data={history}
