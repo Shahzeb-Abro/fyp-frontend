@@ -35,7 +35,7 @@ export const ProfileSettings = () => {
           <Logout />
         </div>
 
-        <div className="flex-1 rounded-t-xl flex flex-col">
+        <div className="flex-1 rounded-t-xl flex flex-col w-full">
           {/* Heading  */}
           <div className="p-4 md:p-8 max-w-[528px]  flex flex-col gap-6">
             <div className="flex flex-col gap-1">
@@ -45,11 +45,11 @@ export const ProfileSettings = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 w-full">
             <img
               src={Profile}
               alt="Profile"
-              className="w-24 h-24 rounded-full"
+              className="size-16 md:w-24 md:h-24 rounded-full"
             />
             <div className="flex flex-col">
               <h3 className="text-2xl font-semibold text-primary-text">

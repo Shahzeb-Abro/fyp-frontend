@@ -18,10 +18,9 @@ const resultsObj = {
     description:
       "This wound is immediately treatable. Please follow the recommended treatment plan and consult a healthcare professional if needed.",
   },
-  "Non advanced treatable": {
-    title: "Non-advanced Treatable",
-    description:
-      "This wound is non-advanced and can be treated with standard care. Please follow the recommended treatment plan.",
+  "No Ulcer": {
+    title: "No Ulcer",
+    description: "No ulcer detected in the image.",
   },
   "Treatable within 4 weeks": {
     title: "Treatable within 4 weeks",
@@ -39,7 +38,7 @@ export const badgeStyles = {
     bg: "bg-orange-100 dark:bg-orange-200/10",
     text: "text-orange-800 dark:text-orange-400",
   },
-  "Non advanced treatable": {
+  "No Ulcer": {
     bg: "bg-yellow-100 dark:bg-yellow-200/10",
     text: "text-yellow-800 dark:text-yellow-400",
   },
