@@ -32,7 +32,8 @@ export const Dashboard = () => {
           <FormattedDate value={createdAt} />
         </span>
       ),
-      width: 100,
+      width: 150,
+      fixed: "left",
     },
     {
       title: <FormattedMessage id="HISTORY.RESULT" />,
@@ -40,7 +41,7 @@ export const Dashboard = () => {
       key: "result",
       render: (result) => (
         <span
-          className={`px-3 py-1 text-sm font-medium rounded-full inline-block whitespace-nowrap
+          className={`px-3 py-1 text-sm font-medium rounded-full 
       ${badgeStyles[result]?.bg || "bg-neutral-200 dark:bg-neutral-800"}
       ${badgeStyles[result]?.text || "text-primary-text"}
     `}
@@ -48,7 +49,7 @@ export const Dashboard = () => {
           {result}
         </span>
       ),
-      width: 150,
+      width: 200,
     },
     {
       title: <FormattedMessage id="HISTORY.IMAGE" />,
@@ -61,7 +62,8 @@ export const Dashboard = () => {
           </span>
         </a>
       ),
-      width: 50,
+      width: 100,
+      fixed: "right",
     },
   ];
 
@@ -180,7 +182,16 @@ export const Dashboard = () => {
                   </div>
                 </div>
               ) : (
-                <Table columns={columns} data={history} pagination={false} />
+                <div className="w-full">
+                  <div className="overflow-x-auto">
+                    <Table
+                      columns={columns}
+                      data={history}
+                      pagination={false}
+                      scroll={{ x: 450 }}
+                    />
+                  </div>
+                </div>
               )}
             </div>
           </div>

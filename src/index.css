@@ -210,7 +210,7 @@ body.dark {
 }
 
 .ant-table-body {
-  overflow: hidden;
+  overflow: auto;
 }
 
 .ant-table {

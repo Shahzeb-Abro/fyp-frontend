@@ -42,7 +42,7 @@ export const CustomTable = ({
   }
 
   return (
-    <div className={`w-full  flex flex-col justify-between ${tableHeight}`}>
+    <div className={`w-full flex flex-col justify-between ${tableHeight}`}>
       <Table
         dataSource={pagination ? paginatedData : data}
         columns={columns}
@@ -56,8 +56,8 @@ export const CustomTable = ({
         locale={{
           emptyText: <EmptyContent />,
         }}
-        tableLayout="fixed"
         onChange={() => onChange && onChange()}
+        tableLayout="fixed"
       />
       {pagination && data && data?.length > 0 && (
         <div className="pagination-container w-full pt-3 mt-3">
