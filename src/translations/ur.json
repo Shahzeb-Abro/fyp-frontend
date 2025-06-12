@@ -155,5 +155,16 @@
   "DETECTION.START_DETECTING": "تشخیص شروع کریں",
   "DETECTION.TITLE": "تشخیص",
   "DASHBOARD.NO_HISTORY": "آپ کوں تاریخ نہیں ہے۔",
-  "DASHBOARD.NO_HISTORY_DESCRIPTION": "آپ تشخیص شروع کرنے کے بعد، آپ کا تاریخ یہاں دکھایا جائے گا۔"
+  "DASHBOARD.NO_HISTORY_DESCRIPTION": "آپ تشخیص شروع کرنے کے بعد، آپ کا تاریخ یہاں دکھایا جائے گا۔",
+  "HISTORY.NO_ULCER": "کوئی زخم نہیں ہے",
+  "HISTORY.NO_ULCER_DESCRIPTION": "تصویر میں کوئی زخم نہیں ہے۔",
+  "DETECTION.START_DETECTION": "زخم کی تشخیص شروع کریں",
+  "DETECTION.CANCEL": "منسوخ کریں",
+  "DETECTION.DETECT": "تشخیص کریں",
+  "DETECTION.SENSITIVE_IMAGE": "سنسیٹیو عکس",
+  "DETECTION.SENSITIVE_IMAGE_DESCRIPTION": "یہ عکس کسی صارف کو نظر آنے کے لیے سنسیٹیو ہو سکتی ہے، لہذا یہ چھپا ہو جاتا ہے۔",
+  "DETECTION.CHANGE_IMAGE": "تصویر تبدیل کریں",
+  "DETECTION.UPLOAD": "ڈاؤن لوڈ کریں",
+  "DETECTION.SHOW_IMAGE": "عکس دکھائیں",
+  "DETECTION.HIDE_IMAGE": "عکس چھپائیں"
 }

@@ -157,5 +157,16 @@
   "DETECTION.START_DETECTING": "Start Detecting",
   "DETECTION.TITLE": "Detection",
   "DASHBOARD.NO_HISTORY": "You don't have any history yet.",
-  "DASHBOARD.NO_HISTORY_DESCRIPTION": "Once you start detecting, your history will be shown here."
+  "DASHBOARD.NO_HISTORY_DESCRIPTION": "Once you start detecting, your history will be shown here.",
+  "HISTORY.NO_ULCER": "No Ulcer",
+  "HISTORY.NO_ULCER_DESCRIPTION": "No ulcer detected in the image.",
+  "DETECTION.START_DETECTION": "Start Ulcer Detection",
+  "DETECTION.CANCEL": "Cancel",
+  "DETECTION.DETECT": "Detect",
+  "DETECTION.SENSITIVE_IMAGE": "Sensitive Image",
+  "DETECTION.SENSITIVE_IMAGE_DESCRIPTION": "This image may be sensitive for some users to view, so it is hidden.",
+  "DETECTION.CHANGE_IMAGE": "Change Image",
+  "DETECTION.UPLOAD": "Upload",
+  "DETECTION.SHOW_IMAGE": "Show Image",
+  "DETECTION.HIDE_IMAGE": "Hide Image"
 }

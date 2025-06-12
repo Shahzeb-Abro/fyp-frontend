@@ -87,16 +87,16 @@ export const UlcerDetectModal = ({ showModal, setShowModal }) => {
     <Modal
       isOpen={showModal}
       setIsOpen={setShowModal}
-      title="Start Ulcer Detection"
+      title={<FormattedMessage id="DETECTION.START_DETECTION" />}
       footer={
         <div className="flex items-center justify-end gap-3">
           <Button
-            label="Cancel"
+            label={<FormattedMessage id="DETECTION.CANCEL" />}
             variant="tertiary"
             onClick={() => setShowModal(false)}
           />
           <Button
-            label="Detect"
+            label={<FormattedMessage id="DETECTION.DETECT" />}
             onClick={handleDetectClick}
             disabled={isPending}
             isLoading={isPending}
@@ -109,8 +109,7 @@ export const UlcerDetectModal = ({ showModal, setShowModal }) => {
         data-modalid="ulcer-detect-modal"
       >
         <div className="text-md text-secondary-text">
-          Upload your image below to start ulcer detection, it is free and
-          accurate to large extent
+          <FormattedMessage id="DETECTION.UPLOAD_IMAGE_DESCRIPTION" />
         </div>
         <ImageUploader
           image={image}
@@ -123,7 +122,7 @@ export const UlcerDetectModal = ({ showModal, setShowModal }) => {
           {result?.title && result?.description && (
             <div className="flex flex-col gap-6">
               <h2 className="text-preset-3 text-primary-text font-semibold">
-                Detection Result
+                <FormattedMessage id="DETECTION.DETECTION_RESULT" />
               </h2>
               <div className="flex flex-col gap-4">
                 <h3

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "../button";
 import { AddMediaImageIcon, UploadIcon } from "../../assets/svgAssets";
+import { FormattedMessage } from "react-intl";
 
 export const ImageUploader = ({
   image,
@@ -40,10 +41,11 @@ export const ImageUploader = ({
           />
           {!showSensitiveImage && (
             <div className="absolute inset-0  items-center justify-center bg-black/60 backdrop-blur-[16px] text-white rounded-[16px] flex flex-col gap-2 text-center">
-              <p className="font-semibold text-sm">Sensitive Image</p>
+              <p className="font-semibold text-sm">
+                <FormattedMessage id="DETECTION.SENSITIVE_IMAGE" />
+              </p>
               <p className="text-xs font-medium text-neutral-100 max-w-[250px]">
-                This image may be sensitive for some users to view, so it is
-                hidden.
+                <FormattedMessage id="DETECTION.SENSITIVE_IMAGE_DESCRIPTION" />
               </p>
             </div>
           )}
@@ -55,10 +57,10 @@ export const ImageUploader = ({
           </span>
           <div className="flex flex-col gap-2 text-center">
             <p className="text-sm font-semibold text-text-primary">
-              Upload Image
+              <FormattedMessage id="DETECTION.UPLOAD_IMAGE" />
             </p>
             <p className="text-xs font-medium text-text-secondary max-w-[250px]">
-              Upload your image below, only PNG and JPEG are supported for now.
+              <FormattedMessage id="DETECTION.UPLOAD_IMAGE_DESCRIPTION" />
             </p>
           </div>
         </div>
@@ -78,7 +80,7 @@ export const ImageUploader = ({
             <Button
               type="button"
               onClick={() => ref.current.click()}
-              label={"Change Image"}
+              label={<FormattedMessage id="DETECTION.CHANGE_IMAGE" />}
             />
           )}
 
@@ -86,14 +88,20 @@ export const ImageUploader = ({
             <Button
               type="button"
               onClick={() => setShowSensitiveImage((prev) => !prev)}
-              label={showSensitiveImage ? "Hide Image" : "Show Image"}
+              label={
+                showSensitiveImage ? (
+                  <FormattedMessage id="DETECTION.HIDE_IMAGE" />
+                ) : (
+                  <FormattedMessage id="DETECTION.SHOW_IMAGE" />
+                )
+              }
               variant="secondary"
             />
           ) : (
             <Button
               type="button"
               onClick={() => ref.current.click()}
-              label={"Upload"}
+              label={<FormattedMessage id="DETECTION.UPLOAD" />}
               variant="secondary"
               hasPreIcon
               preIcon={
