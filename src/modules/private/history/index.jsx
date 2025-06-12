@@ -104,7 +104,7 @@ export const History = () => {
       width: 50,
     },
     {
-      title: "Actions",
+      title: <FormattedMessage id="DASHBOARD.ACTIONS" />,
       dataIndex: "actions",
       key: "actions",
       render: (_, record) => (
@@ -130,7 +130,7 @@ export const History = () => {
   ];
   return (
     <main className="w-full h-dvh ">
-      <PageHeader title="History" />
+      <PageHeader title={<FormattedMessage id="HISTORY.TITLE" />} />
 
       <div className="md:p-6 lg:bg-neutral-50/75  lg:dark:bg-neutral-900 lg:rounded-tl-4xl lg:h-[calc(100vh-81px)] overflow-y-auto">
         {isLoading ? (
@@ -150,10 +150,10 @@ export const History = () => {
               />
               <div className="flex flex-col gap-2">
                 <h3 className="text-preset-2">
-                  You don't have any history yet.
+                  <FormattedMessage id="DASHBOARD.NO_HISTORY" />
                 </h3>
                 <p className="text-preset-3 text-secondary-text">
-                  Once you start detecting, your history will be shown here.
+                  <FormattedMessage id="DASHBOARD.NO_HISTORY_DESCRIPTION" />
                 </p>
               </div>
             </div>
@@ -162,7 +162,7 @@ export const History = () => {
           <div className="max-w-4xl w-[calc(100vw-50px)] md:w-full mx-auto flex flex-col gap-4 p-4 lg:p-8 rounded-[32px] bg-neutral-0 dark:bg-neutral-800">
             <div className="flex justify-end">
               <Button
-                label="Delete All"
+                label={<FormattedMessage id="HISTORY.DELETE_ALL" />}
                 variant="destructive"
                 preIcon={<TrashIcon />}
                 hasPreIcon={true}

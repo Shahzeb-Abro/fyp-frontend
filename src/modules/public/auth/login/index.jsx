@@ -11,9 +11,10 @@ import {
 } from "../../../../assets/svgAssets";
 import ROUTES from "../../../../constants/routes";
 import { Link, useNavigate } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
-import { loginUser } from "../../../../api/auth";
-import { showErrorToast, showSuccessToast } from "../../../../lib/toastUtils";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { loginUser, getMe } from "../../../../api/auth";
+import { showErrorToast } from "../../../../lib/toastUtils";
+import { FormattedMessage } from "react-intl";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -30,6 +31,22 @@ export const Login = () => {
     resolver: zodResolver(loginFormSchema),
   });
 
+  // Check if user is already authenticated
+  const { data: userData, isLoading: isLoadingUser } = useQuery({
+    queryKey: ["me"],
+    queryFn: getMe,
+    retry: false,
+    onSuccess: (data) => {
+      if (data.status === "success") {
+        navigate(ROUTES.HOME, { replace: true });
+      }
+    },
+  });
+
+  if (!isLoadingUser && userData?.status === "success") {
+    navigate("/home", { replace: true });
+  }
+
   const { mutate: loginMutation, isPending } = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
@@ -42,7 +59,6 @@ export const Login = () => {
 
       localStorage.setItem("user", JSON.stringify(data.user));
       localStorage.setItem("isAuthenticated", true);
-
 
       navigate(ROUTES.DASHBOARD, { replace: true });
     },
@@ -61,6 +77,9 @@ export const Login = () => {
   }, []);
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  if (isLoadingUser) {
+    return <div>Loading...</div>;
+  }
   return (
     <main className="w-full bg-surface min-h-screen flex items-center justify-center py-16 px-4 sm:px-0">
       <div className="px-4 w-full p-12 sm:px-12 bg-neutral-0 dark:bg-neutral-950 dark:border-neutral-800 max-w-[540px]  flex flex-col gap-4 lg:gap-8 border border-neutral-200 rounded-xl md:rounded-[48px] shadow-lg dark:shadow-none">
@@ -70,10 +89,10 @@ export const Login = () => {
 
         <div className="flex flex-col gap-1 items-center text-center">
           <h2 className="text-display-sm font-medium  text-primary-text">
-            Welcome
+            <FormattedMessage id="AUTH.LOGIN.WELCOME" />
           </h2>
           <p className="text-md  text-secondary-text">
-            Welcome back! So good to see you again.
+            <FormattedMessage id="AUTH.LOGIN.WELCOME_BACK" />
           </p>
         </div>
 
@@ -86,20 +105,24 @@ export const Login = () => {
             <span className="text-primary-text">
               <GoogleIcon />
             </span>
-            <span className="px-4 ">Continue with Google</span>
+            <span className="px-4 ">
+              <FormattedMessage id="AUTH.LOGIN.CONTINUE_WITH_GOOGLE" />
+            </span>
           </a>
 
           <div className="flex items-center w-full gap-2">
             <span className="w-full h-[1px] bg-neutral-200 dark:bg-neutral-800 flex-1 flex-shrink-0"></span>
-            <span className="text-secondary-text text-sm">OR</span>
+            <span className="text-secondary-text text-sm">
+              <FormattedMessage id="AUTH.LOGIN.OR" />
+            </span>
             <span className="w-full h-[1px] bg-neutral-200 dark:bg-neutral-800 flex-1 flex-shrink-0"></span>
           </div>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
           <Input
-            placeholder="email@example.com"
-            label="Email Address"
+            placeholder={<FormattedMessage id="AUTH.LOGIN.EMAIL_PLACEHOLDER" />}
+            label={<FormattedMessage id="AUTH.LOGIN.EMAIL_LABEL" />}
             registerProps={register("email")}
             error={errors.email?.message}
           />
@@ -116,11 +139,13 @@ export const Login = () => {
                 )}
               </span>
             }
-            label="Password"
+            label={<FormattedMessage id="AUTH.LOGIN.PASSWORD_LABEL" />}
             type={isPasswordVisible ? "text" : "password"}
             linkComponent={
               <span className="text-sm font-medium text-secondary-text underline dark:text-neutral-400">
-                <Link to="/forgot-password">Forgot?</Link>
+                <Link to="/forgot-password">
+                  <FormattedMessage id="AUTH.LOGIN.FORGOT_PASSWORD" />
+                </Link>
               </span>
             }
             error={errors.password?.message}
@@ -128,7 +153,7 @@ export const Login = () => {
           />
           <Button
             type="submit"
-            label={"Login"}
+            label={<FormattedMessage id="AUTH.LOGIN.LOGIN" />}
             disabled={isPending}
             isLoading={isPending}
           />
@@ -136,9 +161,11 @@ export const Login = () => {
 
         <div className=" flex flex-col items-center gap-4">
           <p className="text-sm text-secondary-text">
-            No account yet?{" "}
+            <FormattedMessage id="AUTH.LOGIN.NO_ACCOUNT_YET" />{" "}
             <span className="text-primary-text underline">
-              <Link to={ROUTES.REGISTER}>Register</Link>
+              <Link to={ROUTES.REGISTER}>
+                <FormattedMessage id="AUTH.LOGIN.REGISTER" />
+              </Link>
             </span>
           </p>
         </div>

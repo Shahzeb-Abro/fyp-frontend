@@ -41,6 +41,8 @@ export const CustomTable = ({
     );
   }
 
+  const selectedLanguage = localStorage.getItem("language");
+
   return (
     <div className={`w-full flex flex-col justify-between ${tableHeight}`}>
       <Table
@@ -74,7 +76,9 @@ export const CustomTable = ({
                   <button
                     variant="pagination"
                     pagination="prev"
-                    className="p-1 bg-white rounded-lg border border-neutral-500 size-10 flex items-center justify-center hover:bg-neutral-300 "
+                    className={`p-1 bg-white rounded-lg border border-neutral-500 size-10 flex items-center justify-center hover:bg-neutral-300 ${
+                      selectedLanguage === "ur" ? "rotate-180" : "rotate-0"
+                    }`}
                   >
                     <ArrowLeftIcon />
                   </button>
@@ -85,7 +89,9 @@ export const CustomTable = ({
                   <button
                     variant="pagination"
                     pagination="next"
-                    className="p-1 bg-white rounded-lg border border-neutral-500 size-10 flex items-center justify-center hover:bg-neutral-300 rotate-180"
+                    className={`p-1 bg-white rounded-lg border border-neutral-500 size-10 flex items-center justify-center hover:bg-neutral-300 ${
+                      selectedLanguage === "ur" ? "rotate-0" : "rotate-180"
+                    }`}
                   >
                     <ArrowLeftIcon />
                   </button>

@@ -10,8 +10,15 @@ export const DoctorInfoModal = ({ showModal, setShowModal, doctor }) => {
       title="Doctor Information"
       footer={
         <div className="flex justify-end gap-4">
-          <Button label="Close" variant="tertiary" />
-          <Button label="Send email" />
+          <Button
+            label="Close"
+            variant="tertiary"
+            onClick={() => setShowModal(false)}
+          />
+          <Button
+            label="Book Consultation"
+            onClick={() => window.open(doctor.consulationLink, "_blank")}
+          />
         </div>
       }
     >
@@ -37,7 +44,9 @@ export const DoctorInfoModal = ({ showModal, setShowModal, doctor }) => {
             <h3 className="text-lg font-semibold text-primary-text mb-2">
               Experience & Achievements
             </h3>
-            <p className="text-secondary-text">{doctor.bio}</p>
+            <p className="text-secondary-text bg-surface-2 p-4 rounded-lg">
+              {doctor.bio}
+            </p>
           </div>
 
           <div>
@@ -45,14 +54,9 @@ export const DoctorInfoModal = ({ showModal, setShowModal, doctor }) => {
               Qualifications
             </h3>
             <div className="flex flex-wrap gap-2">
-              {doctor.qualifications.map((qual, index) => (
-                <span
-                  key={index}
-                  className="px-3 py-1 bg-surface-2 rounded-full text-sm text-primary-text"
-                >
-                  {qual}
-                </span>
-              ))}
+              <span className="px-3 py-1 bg-surface-2 rounded-full text-sm text-primary-text">
+                {doctor.specialization}
+              </span>
             </div>
           </div>
 
@@ -62,7 +66,7 @@ export const DoctorInfoModal = ({ showModal, setShowModal, doctor }) => {
                 Success Rate
               </h4>
               <p className="text-lg font-semibold text-primary-text">
-                {doctor.successRate}
+                {doctor.satisfactionRate}
               </p>
             </div>
             <div className="bg-surface-2 p-4 rounded-lg">
@@ -70,7 +74,7 @@ export const DoctorInfoModal = ({ showModal, setShowModal, doctor }) => {
                 Patients Treated
               </h4>
               <p className="text-lg font-semibold text-primary-text">
-                {doctor.patientsTreated}
+                {doctor.patientsCount}
               </p>
             </div>
           </div>

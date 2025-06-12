@@ -9,6 +9,7 @@ import { useMutation } from "@tanstack/react-query";
 import { resetPassword } from "../../../../api/auth";
 import { showErrorToast, showSuccessToast } from "../../../../lib/toastUtils";
 import ROUTES from "../../../../constants/routes";
+import { FormattedMessage } from "react-intl";
 
 export const ResetPassword = () => {
   const navigate = useNavigate();
@@ -67,10 +68,10 @@ export const ResetPassword = () => {
       <div className="px-4 w-full p-12 sm:px-12 bg-neutral-0 dark:bg-neutral-950 dark:border-neutral-800 max-w-[540px]  flex flex-col gap-4 lg:gap-8 border border-neutral-200 rounded-xl md:rounded-[48px] shadow-lg dark:shadow-none">
         <div className="flex flex-col gap-1 items-center text-center">
           <h2 className="text-display-sm font-medium  text-primary-text">
-            Reset Your Password
+            <FormattedMessage id="AUTH.RESET_PASSWORD.TITLE" />
           </h2>
           <p className="text-md  text-secondary-text">
-            Choose a new password to secure your account.
+            <FormattedMessage id="AUTH.RESET_PASSWORD.DESCRIPTION" />
           </p>
         </div>
 
@@ -88,11 +89,19 @@ export const ResetPassword = () => {
                 )}
               </span>
             }
-            label="New Password"
+            label={
+              <FormattedMessage id="AUTH.RESET_PASSWORD.NEW_PASSWORD_LABEL" />
+            }
             type={isPasswordVisible ? "text" : "password"}
             error={errors.password?.message}
             registerProps={register("password")}
-            hint={errors.password?.message ? "" : "At least 8 characters"}
+            hint={
+              errors.password?.message ? (
+                ""
+              ) : (
+                <FormattedMessage id="AUTH.RESET_PASSWORD.NEW_PASSWORD_HINT" />
+              )
+            }
           />
 
           <Input
@@ -110,14 +119,17 @@ export const ResetPassword = () => {
                 )}
               </span>
             }
-            label="Confirm New Password"
+            label={
+              <FormattedMessage id="AUTH.RESET_PASSWORD.CONFIRM_NEW_PASSWORD_LABEL" />
+            }
             type={isPasswordConfirmationVisible ? "text" : "password"}
             error={errors.passwordConfirmation?.message}
             registerProps={register("passwordConfirmation")}
           />
           <Button
             type="submit"
-            label={isPending ? "Loading..." : "Reset Password"}
+            label={<FormattedMessage id="AUTH.RESET_PASSWORD.RESET_PASSWORD" />}
+            isLoading={isPending}
           />
         </form>
       </div>

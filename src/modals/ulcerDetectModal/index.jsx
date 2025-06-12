@@ -3,28 +3,30 @@ import { Button, ImageUploader, Modal } from "../../generalComponents";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { detectUlcer } from "../../api/detection";
 import { showErrorToast, showSuccessToast } from "../../lib/toastUtils";
+import { FormattedMessage } from "react-intl";
 // import illustrationEmpty from "../../assets/illustration-empty.svg";
 // import illustrationEmptyDark from "../../assets/illustration-empty-dark.svg";
 
 const resultsObj = {
   "Complex wound": {
-    title: "Complex wound",
-    description:
-      "This is a complex wound that requires immediate medical attention. Please consult a healthcare professional for further evaluation and treatment.",
+    title: <FormattedMessage id="HISTORY.COMPLEX_WOUND" />,
+    description: <FormattedMessage id="HISTORY.COMPLEX_WOUND_DESCRIPTION" />,
   },
   "Immediately treatable": {
-    title: "Immediately Treatable",
-    description:
-      "This wound is immediately treatable. Please follow the recommended treatment plan and consult a healthcare professional if needed.",
+    title: <FormattedMessage id="HISTORY.IMMEDIATELY_TREATABLE" />,
+    description: (
+      <FormattedMessage id="HISTORY.IMMEDIATELY_TREATABLE_DESCRIPTION" />
+    ),
   },
   "No Ulcer": {
-    title: "No Ulcer",
-    description: "No ulcer detected in the image.",
+    title: <FormattedMessage id="HISTORY.NO_ULCER" />,
+    description: <FormattedMessage id="HISTORY.NO_ULCER_DESCRIPTION" />,
   },
   "Treatable within 4 weeks": {
-    title: "Treatable within 4 weeks",
-    description:
-      "This wound is treatable within 4 weeks. Please follow the recommended treatment plan and consult a healthcare professional if needed.",
+    title: <FormattedMessage id="HISTORY.TREATABLE_WITHIN_4_WEEKS" />,
+    description: (
+      <FormattedMessage id="HISTORY.TREATABLE_WITHIN_4_WEEKS_DESCRIPTION" />
+    ),
   },
 };
 

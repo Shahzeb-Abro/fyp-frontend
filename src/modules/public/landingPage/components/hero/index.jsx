@@ -1,22 +1,25 @@
 import { Button } from "../../../../../generalComponents";
 import HeroLight from "../../../../../assets/images/landing/hero-light.png";
 import HeroDark from "../../../../../assets/images/landing/hero-dark.png";
+import { FormattedMessage } from "react-intl";
 
 export const Hero = () => {
   return (
-    <header className="max-w-[1110px] mx-auto flex flex-col mt-12 md:mt-24 px-4 lg:px-0">
+    <header
+      id="home"
+      className="max-w-[1110px] mx-auto flex flex-col mt-12 md:mt-24 px-4 lg:px-0"
+    >
       <div className="flex-1 flex flex-col gap-4 md:gap-6 max-w-xl items-center mx-auto text-center">
         <div className="flex flex-col gap-4">
           <h1 className="text-4xl md:text-6xl font-bold text-primary-text">
-            Early detection saves lives
+            <FormattedMessage id="LANDING.HERO_TITLE" />
           </h1>
           <p className="text-secondary-text">
-            Spotting foot ulcers early allows for timely treatment, reducing
-            infection risks and preserving your quality of life.
+            <FormattedMessage id="LANDING.HERO_DESCRIPTION" />
           </p>
         </div>
         <div>
-          <Button label="Register & Start Detecting" />
+          <Button label={<FormattedMessage id="LANDING.HERO_BUTTON" />} />
         </div>
       </div>
 

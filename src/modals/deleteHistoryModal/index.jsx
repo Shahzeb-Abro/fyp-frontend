@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button, Modal } from "../../generalComponents";
 import { deleteHistory } from "../../api/history";
 import { showErrorToast, showSuccessToast } from "../../lib/toastUtils";
+import { FormattedMessage } from "react-intl";
 
 export const DeleteHistoryModal = ({ showModal, setShowModal, history }) => {
   const queryClient = useQueryClient();
@@ -9,7 +10,9 @@ export const DeleteHistoryModal = ({ showModal, setShowModal, history }) => {
     mutationFn: deleteHistory,
     onSuccess: (data) => {
       if (data.status !== "success") {
-        showSuccessToast("History item deleted successfully");
+        showSuccessToast(
+          <FormattedMessage id="HISTORY.DELETE_HISTORY_ITEM_SUCCESS" />
+        );
         setShowModal(false);
         queryClient.invalidateQueries({ queryKey: ["history"] });
         return;
@@ -17,7 +20,9 @@ export const DeleteHistoryModal = ({ showModal, setShowModal, history }) => {
     },
     onError: (error) => {
       console.error("Detection failed:", error);
-      showErrorToast("An error occurred while deleting the history item");
+      showErrorToast(
+        <FormattedMessage id="HISTORY.DELETE_HISTORY_ITEM_ERROR" />
+      );
     },
   });
 
@@ -28,16 +33,16 @@ export const DeleteHistoryModal = ({ showModal, setShowModal, history }) => {
     <Modal
       isOpen={showModal}
       setIsOpen={setShowModal}
-      title="Delete History Item"
+      title={<FormattedMessage id="HISTORY.DELETE_HISTORY_ITEM" />}
       footer={
         <div className="flex items-center justify-end gap-3">
           <Button
-            label="Cancel"
+            label={<FormattedMessage id="CANCEL" />}
             variant="tertiary"
             onClick={() => setShowModal(false)}
           />
           <Button
-            label="Delete"
+            label={<FormattedMessage id="DELETE" />}
             variant="destructive"
             onClick={handleDelete}
             isLoading={isPending}
@@ -50,8 +55,7 @@ export const DeleteHistoryModal = ({ showModal, setShowModal, history }) => {
         data-modalid="ulcer-detect-modal"
       >
         <div className="text-md text-secondary-text">
-          Are you sure you want to delete this history item? This action is
-          irreversible.
+          <FormattedMessage id="HISTORY.DELETE_HISTORY_ITEM_DESCRIPTION" />
         </div>
       </div>
     </Modal>

@@ -6,26 +6,28 @@ import { detectUlcer } from "../../../api/detection";
 import { showErrorToast, showSuccessToast } from "../../../lib/toastUtils";
 import illustrationEmpty from "../../../assets/illustration-empty.svg";
 import illustrationEmptyDark from "../../../assets/illustration-empty-dark.svg";
+import { FormattedMessage } from "react-intl";
 
 const resultsObj = {
   "Complex wound": {
-    title: "Complex wound",
-    description:
-      "This is a complex wound that requires immediate medical attention. Please consult a healthcare professional for further evaluation and treatment.",
+    title: <FormattedMessage id="HISTORY.COMPLEX_WOUND" />,
+    description: <FormattedMessage id="HISTORY.COMPLEX_WOUND_DESCRIPTION" />,
   },
   "Immediately treatable": {
-    title: "Immediately Treatable",
-    description:
-      "This wound is immediately treatable. Please follow the recommended treatment plan and consult a healthcare professional if needed.",
+    title: <FormattedMessage id="HISTORY.IMMEDIATELY_TREATABLE" />,
+    description: (
+      <FormattedMessage id="HISTORY.IMMEDIATELY_TREATABLE_DESCRIPTION" />
+    ),
   },
   "No Ulcer": {
-    title: "No Ulcer",
-    description: "No ulcer detected in the image.",
+    title: <FormattedMessage id="HISTORY.NO_ULCER" />,
+    description: <FormattedMessage id="HISTORY.NO_ULCER_DESCRIPTION" />,
   },
   "Treatable within 4 weeks": {
-    title: "Treatable within 4 weeks",
-    description:
-      "This wound is treatable within 4 weeks. Please follow the recommended treatment plan and consult a healthcare professional if needed.",
+    title: <FormattedMessage id="HISTORY.TREATABLE_WITHIN_4_WEEKS" />,
+    description: (
+      <FormattedMessage id="HISTORY.TREATABLE_WITHIN_4_WEEKS_DESCRIPTION" />
+    ),
   },
 };
 
@@ -98,16 +100,21 @@ export const Detection = () => {
     mutate(file);
   };
 
+  const selectedLanguage = localStorage.getItem("language");
+
   return (
     <main className="w-full h-dvh  bg-surface-2">
-      <PageHeader title="Detection" />
+      <PageHeader title={<FormattedMessage id="DETECTION.TITLE" />} />
 
-      <div className="lg:flex-row flex flex-col flex-1 h-[calc(100vh-81px-80px)] lg:h-[calc(100vh-81px)] overflow-y-auto">
+      <div
+        className={`lg:flex-row p-6 flex gap-6 flex-col flex-1 lg:bg-neutral-50/75  lg:dark:bg-neutral-900 ${
+          selectedLanguage === "ur" ? "rounded-tr-[40px]" : "rounded-tl-[40px]"
+        } h-[calc(100vh-81px-80px)] lg:h-[calc(100vh-81px)] overflow-y-auto`}
+      >
         <div className="pl-8 py-5 pr-4 border-r  border-neutral-200 dark:border-neutral-800 lg:flex flex-col gap-2 lg:w-[400px] h-full">
           <div className="text-primary-text flex flex-col gap-6">
             <p className="text-preset-3">
-              Upload your image by clicking the button below. Then your image
-              will be processed for detecting ulcer.
+              <FormattedMessage id="DETECTION.UPLOAD_IMAGE_DESCRIPTION" />
             </p>
 
             <div className="h-64 w-full flex items-center justify-center border border-neutral-200 dark:border-neutral-800 rounded-md overflow-hidden bg-muted">
@@ -118,7 +125,7 @@ export const Detection = () => {
                   className="max-h-full max-w-full object-contain"
                 />
               ) : (
-                "No image uploaded yet."
+                <FormattedMessage id="DETECTION.NO_IMAGE_UPLOADED" />
               )}
             </div>
 
@@ -132,14 +139,15 @@ export const Detection = () => {
 
             <div className="flex items-center gap-4">
               <Button
-                label="Upload Image"
-                variant="outlined"
+                label={<FormattedMessage id="DETECTION.UPLOAD_IMAGE" />}
+                variant="tertiary"
                 onClick={handleUploadClick}
               />
               <Button
-                label={isPending ? "Detecting..." : "Start Detecting"}
+                label={<FormattedMessage id="DETECTION.START_DETECTING" />}
                 onClick={handleDetectClick}
                 disabled={isPending}
+                isLoading={isPending}
               />
             </div>
           </div>
@@ -149,7 +157,7 @@ export const Detection = () => {
           {result?.title && result?.description ? (
             <div className="p-4 md:p-8 max-w-[528px] flex flex-col gap-6">
               <h2 className="text-preset-3 text-primary-text font-semibold">
-                Detection Result
+                <FormattedMessage id="DETECTION.DETECTION_RESULT" />
               </h2>
               <div className="flex flex-col gap-4">
                 <h3
@@ -178,9 +186,11 @@ export const Detection = () => {
                   className="hidden dark:block"
                 />
                 <div className="flex flex-col gap-2">
-                  <h3 className="text-preset-2">Results will be shown here</h3>
+                  <h3 className="text-preset-2">
+                    <FormattedMessage id="DETECTION.RESULTS_WILL_BE_SHOWN_HERE" />
+                  </h3>
                   <p className="text-preset-3 text-secondary-text">
-                    Start Detecting to see results
+                    <FormattedMessage id="DETECTION.START_DETECTING_TO_SEE_RESULTS" />
                   </p>
                 </div>
               </div>

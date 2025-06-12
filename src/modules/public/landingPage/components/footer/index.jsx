@@ -1,3 +1,4 @@
+import { FormattedMessage } from "react-intl";
 import { LogoLink } from "../../../../../layout/dashboardLayout/components/sidebar/components";
 
 export const Footer = () => {
@@ -9,15 +10,33 @@ export const Footer = () => {
             <LogoLink />
           </span>
           <ul className="flex flex-col gap-2 text-sm sm:flex-row sm:gap-4">
-            <li>Home</li>
-            <li>About</li>
-            <li>Features</li>
-            <li>FAQs</li>
+            <a href="#home">
+              <li className="cursor-pointer hover:text-primary-text">
+                <FormattedMessage id="LANDING.HOME" />
+              </li>
+            </a>
+            <a href="#about">
+              <li className="cursor-pointer hover:text-primary-text">
+                <FormattedMessage id="LANDING.ABOUT" />
+              </li>
+            </a>
+            <a href="#features">
+              <li className="cursor-pointer hover:text-primary-text">
+                <FormattedMessage id="LANDING.FEATURES" />
+              </li>
+            </a>
+            <a href="#faqs">
+              <li className="cursor-pointer hover:text-primary-text">
+                <FormattedMessage id="LANDING.FAQS" />
+              </li>
+            </a>
           </ul>
         </div>
         <div className="text-xs text-center mt-8">
-          &copy; {new Date().getFullYear()} All rights reserved. Made with ♥ by
-          Shahzeb Abro in Karachi, Pakistan
+          <FormattedMessage
+            id="LANDING.COPYRIGHT"
+            values={{ year: new Date().getFullYear() }}
+          />
         </div>
       </div>
     </footer>

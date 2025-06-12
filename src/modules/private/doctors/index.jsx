@@ -3,67 +3,45 @@ import { PageHeader } from "../../../layout/dashboardLayout/components";
 import { Table, Modal, Button } from "../../../generalComponents";
 import { InfoIcon } from "../../../assets/svgAssets";
 import { DoctorInfoModal } from "../../../modals";
+import DrIftikhar from "../../../assets/images/doctors/dr.iftikhar.webp";
+import DrMehak from "../../../assets/images/doctors/dr.mehak.webp";
+import DrMunir from "../../../assets/images/doctors/dr.munir.png";
+import { FormattedMessage } from "react-intl";
 
 export const doctorsData = [
   {
     id: 1,
-    name: "Dr. Sarah Johnson",
-    email: "sarah.johnson@example.com",
-    image:
-      "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=400&fit=crop",
-    specialization: "Gastroenterology",
-    experience: "15 years",
-    expertise: "Peptic Ulcer Disease",
-    qualifications: ["MD", "FACG", "Gastroenterology Fellowship"],
-    research: "Published 20+ papers on H. pylori treatment",
-    successRate: "95%",
-    patientsTreated: "2000+",
-    bio: "Distinguished gastroenterologist specializing in peptic ulcer disease. Completed medical training at Harvard Medical School and fellowship at Mayo Clinic. Known for innovative approaches to H. pylori treatment with a 95% success rate in complex cases.",
+    name: "Dr. Syed Iftikhar Ul Hameed",
+    image: DrIftikhar,
+    specialization: "Diabetologist",
+    experience: "19",
+    patientsCount: "478",
+    satisfactionRate: "100%",
+    consulationLink:
+      "https://oladoc.com/pakistan/karachi/dr/diabetologist/syed-iftikhar-ul-hameed/2019307",
+    bio: "Dr. Syed Iftikhar Ul Hameed is an expert Diabetologist with 19 years of experience. You can book an in-person appointment or an online video consultation with Dr. Syed Iftikhar Ul Hameed through oladoc.com or by calling at 02138140600.",
   },
   {
-    id: 2,
-    name: "Dr. Michael Chen",
-    email: "michael.chen@example.com",
-    image:
-      "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=400&fit=crop",
-    specialization: "Gastroenterology",
-    experience: "12 years",
-    expertise: "Stress Ulcer Management",
-    qualifications: ["MD", "PhD", "Gastroenterology Board Certified"],
-    research: "Leading expert in stress ulcer prevention",
-    successRate: "92%",
-    patientsTreated: "1500+",
-    bio: "Renowned gastroenterologist with expertise in stress ulcer management. MD and PhD from Stanford University. Specializes in comprehensive treatment plans addressing both physical and psychological aspects of stress-related ulcers.",
+    name: "Dr. Mehak Hanif",
+    image: DrMehak,
+    specialization: "Diabetologist",
+    experience: "7",
+    patientsCount: "750",
+    satisfactionRate: "100%",
+    consulationLink:
+      "https://oladoc.com/pakistan/video-consultation/dr/internal-medicine-specialist/mehak-hanif-endocrinologist/2689222",
+    bio: "Dr. Mehak Hanif is a Internal Medicine Specialist with 7 years of experience currently available at Online Video Consultation, Video Consultation. You can book an in-person appointment or an online video consultation with Dr. Mehak Hanif through oladoc.com or by calling at 04238900939.",
   },
   {
-    id: 3,
-    name: "Dr. Aisha Rahman",
-    email: "aisha.rahman@example.com",
-    image:
-      "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=400&fit=crop",
-    specialization: "Gastroenterology",
-    experience: "8 years",
-    expertise: "Refractory Ulcer Treatment",
-    qualifications: ["MD", "FACG", "Advanced Endoscopy Fellowship"],
-    research: "Specialized in complex ulcer cases",
-    successRate: "90%",
-    patientsTreated: "1000+",
-    bio: "Skilled gastroenterologist specializing in refractory ulcer treatment. Trained at Johns Hopkins University and Cleveland Clinic. Expert in combining traditional and advanced endoscopic procedures for complex cases.",
-  },
-  {
-    id: 4,
-    name: "Dr. James Wilson",
-    email: "james.wilson@example.com",
-    image:
-      "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop",
-    specialization: "Gastroenterology",
-    experience: "20 years",
-    expertise: "Ulcer Surgery & Management",
-    qualifications: ["MD", "FACS", "Surgical Gastroenterology"],
-    research: "Pioneer in minimally invasive ulcer surgery",
-    successRate: "97%",
-    patientsTreated: "3000+",
-    bio: "Pioneer in surgical gastroenterology with 20 years of experience. Yale Medical School graduate specializing in minimally invasive ulcer surgery. Performed over 3,000 successful procedures with innovative recovery techniques.",
+    name: "Dr. Munir Ahmed Channa",
+    image: DrMunir,
+    specialization: "Diabetologist",
+    experience: "12",
+    patientsCount: "125",
+    satisfactionRate: "4.2",
+    consulationLink:
+      "https://merisehat.pk/doctor/karachi/diabetologist/dr-munir-ahmed-channa/77465",
+    bio: "Dr. Munir Ahmed Channa is an esteemed Diabetologist, Endocrinologist, and General Physician with extensive expertise in managing a wide range of medical conditions. He holds a Bachelor of Medicine and Bachelor of Surgery (MBBS) degree, along with a Fellowship of the College of Physicians and Surgeons (FCPS), establishing a strong foundation in internal medicine. His specialized MS in Diabetes and Endocrine further enhances his ability to treat complex endocrine disorders and diabetes-related complications.",
   },
 ];
 
@@ -84,7 +62,7 @@ export const Doctors = () => {
 
   const doctorColumns = [
     {
-      title: "Doctor",
+      title: <FormattedMessage id="DASHBOARD.DOCTOR" />,
       dataIndex: "name",
       key: "name",
       render: (text, record) => (
@@ -100,19 +78,25 @@ export const Doctors = () => {
           </div>
         </div>
       ),
+      width: 250,
     },
     {
-      title: "Specialization",
+      title: <FormattedMessage id="DASHBOARD.SPECIALIZATION" />,
       dataIndex: "specialization",
       key: "specialization",
+      width: 150,
     },
     {
-      title: "Patients Treated",
-      dataIndex: "patientsTreated",
-      key: "patientsTreated",
+      title: <FormattedMessage id="DASHBOARD.PATIENTS_TREATED" />,
+      dataIndex: "patientsCount",
+      key: "patientsCount",
+      render: (text) => (
+        <span className="font-medium text-primary-text">{text}</span>
+      ),
+      width: 150,
     },
     {
-      title: "Actions",
+      title: <FormattedMessage id="DASHBOARD.ACTIONS" />,
       dataIndex: "actions",
       key: "actions",
       render: (_, record) => (
@@ -132,7 +116,7 @@ export const Doctors = () => {
 
   return (
     <main className="w-full min-h-dvh bg-surface-2">
-      <PageHeader title="Ulcer Specialists" />
+      <PageHeader title={<FormattedMessage id="DOCTORS.TITLE" />} />
       <div
         className={`lg:flex-row p-6 flex gap-6 flex-col flex-1 lg:bg-neutral-50/75 lg:dark:bg-neutral-900 ${
           selectedLanguage === "ur" ? "rounded-tr-[40px]" : "rounded-tl-[40px]"

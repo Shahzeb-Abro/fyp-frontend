@@ -1,4 +1,4 @@
-import { FormattedDate } from "react-intl";
+import { FormattedDate, FormattedMessage } from "react-intl";
 import { ImageUploader, Modal } from "../../generalComponents";
 
 // import illustrationEmpty from "../../assets/illustration-empty.svg";
@@ -6,24 +6,26 @@ import { ImageUploader, Modal } from "../../generalComponents";
 
 const resultsObj = {
   "Complex wound": {
-    title: "Complex wound",
-    description:
-      "This is a complex wound that requires immediate medical attention. Please consult a healthcare professional for further evaluation and treatment.",
+    title: <FormattedMessage id="HISTORY.COMPLEX_WOUND" />,
+    description: <FormattedMessage id="HISTORY.COMPLEX_WOUND_DESCRIPTION" />,
   },
   "Immediately treatable": {
-    title: "Immediately Treatable",
-    description:
-      "This wound is immediately treatable. Please follow the recommended treatment plan and consult a healthcare professional if needed.",
+    title: <FormattedMessage id="HISTORY.IMMEDIATELY_TREATABLE" />,
+    description: (
+      <FormattedMessage id="HISTORY.IMMEDIATELY_TREATABLE_DESCRIPTION" />
+    ),
   },
   "Non advanced treatable": {
-    title: "Non-advanced Treatable",
-    description:
-      "This wound is non-advanced and can be treated with standard care. Please follow the recommended treatment plan.",
+    title: <FormattedMessage id="HISTORY.NON_ADVANCED_TREATABLE" />,
+    description: (
+      <FormattedMessage id="HISTORY.NON_ADVANCED_TREATABLE_DESCRIPTION" />
+    ),
   },
   "Treatable within 4 weeks": {
-    title: "Treatable within 4 weeks",
-    description:
-      "This wound is treatable within 4 weeks. Please follow the recommended treatment plan and consult a healthcare professional if needed.",
+    title: <FormattedMessage id="HISTORY.TREATABLE_WITHIN_4_WEEKS" />,
+    description: (
+      <FormattedMessage id="HISTORY.TREATABLE_WITHIN_4_WEEKS_DESCRIPTION" />
+    ),
   },
 };
 
@@ -56,7 +58,7 @@ export const HistoryModal = ({
     <Modal
       isOpen={showModal}
       setIsOpen={setShowModal}
-      title="Detection History"
+      title={<FormattedMessage id="HISTORY.DETECTION_HISTORY" />}
     >
       <div
         className="flex flex-col gap-4 mb-12"
@@ -72,7 +74,9 @@ export const HistoryModal = ({
           {history?.result && (
             <div className="flex flex-col gap-6">
               <div className="flex flex-1 items-center gap-4 justify-between text-primary-text ">
-                <h2 className="text-lg font-semibold">Detection Result</h2>
+                <h2 className="text-lg font-semibold">
+                  <FormattedMessage id="HISTORY.DETECTION_RESULT" />
+                </h2>
                 <span>
                   <FormattedDate value={history?.createdAt} />
                 </span>

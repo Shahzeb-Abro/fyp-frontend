@@ -93,3 +93,15 @@ export const changePassword = async (body) => {
     throw error.response ? error.response.data : error;
   }
 };
+
+export const deleteMe = async () => {
+  try {
+    const response = await axios.delete(`${baseUrl}/auth/delete-me`, {
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error during account deletion:", error);
+    throw error.response ? error.response.data : error;
+  }
+};

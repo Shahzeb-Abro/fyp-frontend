@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button, Modal } from "../../generalComponents";
 import { deleteAllHistory } from "../../api/history";
 import { showErrorToast, showSuccessToast } from "../../lib/toastUtils";
+import { FormattedMessage } from "react-intl";
 
 export const DeleteAllHistoryModal = ({ showModal, setShowModal }) => {
   const queryClient = useQueryClient();
@@ -9,14 +10,18 @@ export const DeleteAllHistoryModal = ({ showModal, setShowModal }) => {
     mutationFn: deleteAllHistory,
     onSuccess: (data) => {
       if (data.status !== "success") {
-        showSuccessToast("Entire history deleted successfully");
+        showSuccessToast(
+          <FormattedMessage id="HISTORY.DELETE_ALL_HISTORY_SUCCESS" />
+        );
         setShowModal(false);
         queryClient.invalidateQueries({ queryKey: ["history"] });
         return;
       }
     },
     onError: () => {
-      showErrorToast("An error occurred while deleting the history");
+      showErrorToast(
+        <FormattedMessage id="HISTORY.DELETE_ALL_HISTORY_ERROR" />
+      );
     },
   });
 
@@ -27,16 +32,16 @@ export const DeleteAllHistoryModal = ({ showModal, setShowModal }) => {
     <Modal
       isOpen={showModal}
       setIsOpen={setShowModal}
-      title="Delete Entire History"
+      title={<FormattedMessage id="HISTORY.DELETE_ENTIRE_HISTORY" />}
       footer={
         <div className="flex items-center justify-end gap-3">
           <Button
-            label="Cancel"
+            label={<FormattedMessage id="CANCEL" />}
             variant="tertiary"
             onClick={() => setShowModal(false)}
           />
           <Button
-            label="Delete History"
+            label={<FormattedMessage id="DELETE" />}
             variant="destructive"
             onClick={handleDelete}
             isLoading={isPending}
@@ -46,8 +51,7 @@ export const DeleteAllHistoryModal = ({ showModal, setShowModal }) => {
     >
       <div className="flex flex-col gap-4 mb-12">
         <div className="text-md text-secondary-text">
-          Are you sure you want to delete entire history? This action is
-          irreversible.
+          <FormattedMessage id="HISTORY.DELETE_ENTIRE_HISTORY_DESCRIPTION" />
         </div>
       </div>
     </Modal>

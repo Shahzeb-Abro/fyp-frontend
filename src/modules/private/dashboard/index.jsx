@@ -67,7 +67,7 @@ export const Dashboard = () => {
 
   const doctorColumns = [
     {
-      title: "Doctor",
+      title: <FormattedMessage id="DASHBOARD.DOCTOR" />,
       dataIndex: "name",
       key: "name",
       render: (text, record) => (
@@ -85,14 +85,18 @@ export const Dashboard = () => {
       ),
     },
     {
-      title: "Specialization",
+      title: <FormattedMessage id="DASHBOARD.SPECIALIZATION" />,
       dataIndex: "specialization",
       key: "specialization",
     },
     {
-      title: "Patients Treated",
-      dataIndex: "patientsTreated",
-      key: "patientsTreated",
+      title: <FormattedMessage id="DASHBOARD.PATIENTS_TREATED" />,
+      dataIndex: "patientsCount",
+      key: "patientsCount",
+      render: (text) => (
+        <span className="font-medium text-primary-text">{text}</span>
+      ),
+      width: 150,
     },
   ];
 
@@ -170,11 +174,10 @@ export const Dashboard = () => {
                   <div className="flex items-center flex-col gap-4 text-center text-primary-text">
                     <div className="flex flex-col gap-1">
                       <h3 className="text-lg font-medium">
-                        You don't have any history yet.
+                        <FormattedMessage id="DASHBOARD.NO_HISTORY" />
                       </h3>
                       <p className="text-sm text-secondary-text">
-                        Once you start detecting, your history will be shown
-                        here.
+                        <FormattedMessage id="DASHBOARD.NO_HISTORY_DESCRIPTION" />
                       </p>
                     </div>
                   </div>

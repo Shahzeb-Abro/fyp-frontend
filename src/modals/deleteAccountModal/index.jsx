@@ -1,26 +1,48 @@
 import { Button, Modal } from "../../generalComponents";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { deleteMe } from "../../api/auth";
+import { useNavigate } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 
 export const DeleteAccountModal = ({ showModal, setShowModal }) => {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  const { mutate: deleteMeMutation, isPending } = useMutation({
+    mutationFn: deleteMe,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["profile"] });
+      setShowModal(false);
+      navigate("/login");
+    },
+  });
+
+  const handleDeleteAccount = () => {
+    deleteMeMutation();
+  };
+
   return (
     <Modal
       isOpen={showModal}
       setIsOpen={setShowModal}
-      title="Delete Account"
+      title={<FormattedMessage id="SETTINGS.DELETE_ACCOUNT" />}
       footer={
         <div className="flex items-center justify-end gap-3">
           <Button
-            label="Cancel"
+            label={<FormattedMessage id="CANCEL" />}
             variant="tertiary"
             onClick={() => setShowModal(false)}
           />
-          <Button label="Yes, Delete Account" variant="destructive" />
+          <Button
+            label={<FormattedMessage id="SETTINGS.DELETE_ACCOUNT_BUTTON" />}
+            variant="destructive"
+            onClick={handleDeleteAccount}
+          />
         </div>
       }
     >
       <div className="flex flex-col gap-4 mb-12">
         <div className="text-md text-secondary-text">
-          Are you sure you want to delete your account? This action is
-          irreversible and all data related to your account will be deleted.
+          <FormattedMessage id="SETTINGS.DELETE_ACCOUNT_CONFIRMATION" />
         </div>
       </div>
     </Modal>
