@@ -11,7 +11,10 @@ const faqData = [
 
 export const FAQs = () => {
   return (
-    <section className="max-w-[1110px] mx-auto px-4 lg:px-0 py-10 md:py-24 flex flex-col gap-16 lg:gap-20">
+    <section
+      id="faqs"
+      className="max-w-[1110px] mx-auto px-4 lg:px-0 py-10 md:py-24 flex flex-col gap-16 lg:gap-20"
+    >
       <div>
         <div className="px-6 py-2 bg-primary-50 dark:bg-primary-900 text-primary-900 dark:text-primary-50 rounded-full text-sm font-medium uppercase border border-primary-200 dark:border-primary-700 justify-self-center">
           <FormattedMessage id="LANDING.FAQs" />

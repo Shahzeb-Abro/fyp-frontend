@@ -2,6 +2,7 @@ import { Button } from "../../../../../generalComponents";
 import HeroLight from "../../../../../assets/images/landing/hero-light.png";
 import HeroDark from "../../../../../assets/images/landing/hero-dark.png";
 import { FormattedMessage } from "react-intl";
+import { Link } from "react-router-dom";
 
 export const Hero = () => {
   return (
@@ -19,7 +20,9 @@ export const Hero = () => {
           </p>
         </div>
         <div>
-          <Button label={<FormattedMessage id="LANDING.HERO_BUTTON" />} />
+          <Link to={"/register"}>
+            <Button label={<FormattedMessage id="LANDING.HERO_BUTTON" />} />
+          </Link>
         </div>
       </div>
 

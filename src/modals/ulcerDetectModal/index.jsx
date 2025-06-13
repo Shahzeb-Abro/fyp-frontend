@@ -61,9 +61,9 @@ export const UlcerDetectModal = ({ showModal, setShowModal }) => {
     onSuccess: (data) => {
       if (data.status !== "success") {
         showSuccessToast(data.message);
-        queryClient.invalidateQueries({ queryKey: ["history"] });
         return;
       }
+      queryClient.invalidateQueries({ queryKey: ["history"] });
 
       setResult(resultsObj[data.data.result]);
     },

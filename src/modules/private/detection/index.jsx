@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { PageHeader } from "../../../layout/dashboardLayout/components";
 import { Button } from "../../../generalComponents";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { detectUlcer } from "../../../api/detection";
 import { showErrorToast, showSuccessToast } from "../../../lib/toastUtils";
 import illustrationEmpty from "../../../assets/illustration-empty.svg";
@@ -55,6 +55,7 @@ export const Detection = () => {
   const [image, setImage] = useState(null);
 
   const [result, setResult] = useState({});
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     document.title = "Detection | Radyab-e-Zakhm";
@@ -67,6 +68,8 @@ export const Detection = () => {
         showSuccessToast(data.message);
         return;
       }
+
+      queryClient.invalidateQueries({ queryKey: ["history"] });
 
       setResult(resultsObj[data.data.result]);
     },

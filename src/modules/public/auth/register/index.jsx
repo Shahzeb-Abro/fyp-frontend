@@ -43,9 +43,9 @@ export const Register = () => {
     },
   });
 
-  if (!isLoadingUser && userData?.status === "success") {
-    navigate("/home", { replace: true });
-  }
+  // if (!isLoadingUser && userData?.status === "success") {
+  //   navigate("/home", { replace: true });
+  // }
 
   const { mutate: registerMutation, isPending } = useMutation({
     mutationFn: registerUser,

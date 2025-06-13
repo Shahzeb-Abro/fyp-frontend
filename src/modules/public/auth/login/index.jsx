@@ -43,9 +43,9 @@ export const Login = () => {
     },
   });
 
-  if (!isLoadingUser && userData?.status === "success") {
-    navigate("/home", { replace: true });
-  }
+  // if (!isLoadingUser && userData?.status === "success") {
+  //   navigate("/home", { replace: true });
+  // }
 
   const { mutate: loginMutation, isPending } = useMutation({
     mutationFn: loginUser,

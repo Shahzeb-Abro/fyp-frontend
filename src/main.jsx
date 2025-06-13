@@ -9,14 +9,7 @@ import { IntlProvider } from "react-intl";
 import en from "./translations/en.json";
 import ur from "./translations/ur.json";
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      retry: false,
-    },
-  },
-});
+const queryClient = new QueryClient();
 
 const messages = {
   en: en,
@@ -54,7 +47,7 @@ export const Root = () => {
         <QueryClientProvider client={queryClient}>
           <App />
           <Toaster richColors position="top-right" />
-          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+          <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </IntlProvider>
     </StrictMode>
