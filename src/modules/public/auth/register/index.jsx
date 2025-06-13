@@ -129,9 +129,6 @@ export const Register = () => {
             error={errors.name?.message}
           />
           <Input
-            placeholder={
-              <FormattedMessage id="AUTH.REGISTER.EMAIL_PLACEHOLDER" />
-            }
             label={<FormattedMessage id="AUTH.REGISTER.EMAIL_LABEL" />}
             registerProps={register("email")}
             error={errors.email?.message}

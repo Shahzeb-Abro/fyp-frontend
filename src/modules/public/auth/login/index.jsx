@@ -121,7 +121,6 @@ export const Login = () => {
 
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
           <Input
-            placeholder={<FormattedMessage id="AUTH.LOGIN.EMAIL_PLACEHOLDER" />}
             label={<FormattedMessage id="AUTH.LOGIN.EMAIL_LABEL" />}
             registerProps={register("email")}
             error={errors.email?.message}
